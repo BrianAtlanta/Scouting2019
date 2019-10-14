@@ -12,7 +12,10 @@
         android:layout_height="wrap_content"
         android:textSize="45sp"
         app:layout_constraintBottom_toBottomOf="@+id/defenseButton"
-        app:layout_constraintStart_toStartOf="@+id/climbTimer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/defenseButton"
         app:layout_constraintTop_toTopOf="@+id/defenseButton" />
 
     <Button
@@ -28,24 +31,23 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:background="@drawable/add_button2"
-        app:layout_constraintBottom_toBottomOf="@+id/minusHatchButton"
-        app:layout_constraintStart_toEndOf="@+id/hatchCount"
-        app:layout_constraintTop_toTopOf="@+id/minusHatchButton"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/minusCargoButton" />
 
     <Button
         android:id="@+id/minusDropButton"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:background="@drawable/subtract_button"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/substractIntakeError" />
+        app:layout_constraintBottom_toBottomOf="@+id/addDropButton"
+        app:layout_constraintEnd_toStartOf="@+id/dropCount"
+        app:layout_constraintTop_toTopOf="@+id/addDropButton" />
 
     <Button
         android:id="@+id/minusCargoButton"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/subtract_button"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent" />
@@ -55,17 +57,17 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:background="@drawable/subtract_button"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/minusCargoButton" />
+        app:layout_constraintBottom_toBottomOf="@+id/addHatchButton"
+        app:layout_constraintEnd_toStartOf="@+id/hatchCount"
+        app:layout_constraintTop_toTopOf="@+id/addHatchButton" />
 
     <Button
         android:id="@+id/addDropButton"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:background="@drawable/add_button2"
-        app:layout_constraintBottom_toBottomOf="@+id/minusDropButton"
-        app:layout_constraintStart_toEndOf="@+id/dropCount"
-        app:layout_constraintTop_toTopOf="@+id/minusDropButton" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/substractIntakeError" />
 
     <Button
         android:id="@+id/addIntakeError"
@@ -81,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="83dp" />
+        app:layout_constraintGuide_begin="20dp" />
 
     <TextView
         android:id="@+id/cargoCount"
@@ -104,9 +106,9 @@
         android:includeFontPadding="false"
         android:text="0"
         android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="@+id/minusHatchButton"
-        app:layout_constraintStart_toEndOf="@+id/minusHatchButton"
-        app:layout_constraintTop_toTopOf="@+id/minusHatchButton"
+        app:layout_constraintBottom_toBottomOf="@+id/addHatchButton"
+        app:layout_constraintEnd_toStartOf="@+id/addHatchButton"
+        app:layout_constraintTop_toTopOf="@+id/addHatchButton"
         tools:text="0" />
 
     <TextView
@@ -117,9 +119,9 @@
         android:includeFontPadding="false"
         android:text="0"
         android:textSize="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/minusDropButton"
-        app:layout_constraintStart_toEndOf="@+id/minusDropButton"
-        app:layout_constraintTop_toTopOf="@+id/minusDropButton"
+        app:layout_constraintBottom_toBottomOf="@+id/addDropButton"
+        app:layout_constraintEnd_toStartOf="@+id/addDropButton"
+        app:layout_constraintTop_toTopOf="@+id/addDropButton"
         tools:text="0" />
 
     <TextView
@@ -137,21 +139,23 @@
         android:id="@+id/textView3"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
         android:gravity="center_horizontal"
         android:text="HATCH"
         android:textSize="35sp"
         app:layout_constraintBottom_toTopOf="@+id/hatchCount"
         app:layout_constraintEnd_toEndOf="@+id/addHatchButton"
-        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+        app:layout_constraintStart_toStartOf="@+id/minusHatchButton" />
 
     <Chronometer
         android:id="@+id/climbTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
         android:textSize="45sp"
         app:layout_constraintBottom_toBottomOf="@+id/climbTimerButton"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/climbTimerButton"
         app:layout_constraintTop_toTopOf="@+id/climbTimerButton" />
 
@@ -165,23 +169,23 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/dropCount"
         app:layout_constraintEnd_toEndOf="@+id/addDropButton"
-        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+        app:layout_constraintStart_toStartOf="@+id/minusDropButton" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="361dp" />
+        app:layout_constraintGuide_end="20dp" />
 
     <Button
         android:id="@+id/substractIntakeError"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/subtract_button"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/minusCargoButton" />
 
     <TextView
         android:id="@+id/intakeError"
@@ -211,85 +215,96 @@
 
     <Button
         android:id="@+id/defenseButton"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="48dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="50dp"
         android:text="Start Defense"
-        app:layout_constraintEnd_toEndOf="@+id/climbTimerButton"
-        app:layout_constraintStart_toStartOf="@+id/climbTimerButton"
+        app:layout_constraintEnd_toStartOf="@+id/defenseTimer"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/climbTimerButton" />
 
     <Button
         android:id="@+id/climbTimerButton"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="60dp"
         android:text="Start Climb"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/climbTimer"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
     <CheckBox
         android:id="@+id/checkBox"
-        android:layout_width="204dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="364dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
         android:text="Rocket Level 2"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/checkBox2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/addIntakeError" />
 
     <CheckBox
         android:id="@+id/checkBox2"
-        android:layout_width="198dp"
-        android:layout_height="38dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Rocket Level 3"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/checkBox"
         app:layout_constraintTop_toTopOf="@+id/checkBox" />
 
     <Button
         android:id="@+id/endTelopButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
         android:text="Match Done"
-        app:layout_constraintEnd_toEndOf="@+id/checkBox2"
-        app:layout_constraintTop_toBottomOf="@+id/robotDied" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline7"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2" />
 
     <CheckBox
         android:id="@+id/robotDied"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="75dp"
-        android:layout_marginLeft="75dp"
         android:text="Died"
         android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/robotDisabled"
         app:layout_constraintTop_toTopOf="@+id/robotDisabled" />
 
     <CheckBox
         android:id="@+id/robotDisabled"
         android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:layout_marginStart="75dp"
-        android:layout_marginLeft="75dp"
+        android:layout_height="wrap_content"
         android:text="Disabled"
         android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/robotDied"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/Broken"
         app:layout_constraintTop_toTopOf="@+id/Broken" />
 
     <CheckBox
         android:id="@+id/Broken"
-        android:layout_width="0dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="75dp"
-        android:layout_marginLeft="75dp"
-        android:layout_marginTop="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
         android:text="Broken"
         android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/robotDisabled"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/defenseButton" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="45dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

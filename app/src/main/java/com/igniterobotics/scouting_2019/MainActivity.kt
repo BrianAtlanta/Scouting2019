@@ -1,21 +1,36 @@
 package com.igniterobotics.scouting_2019
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Chronometer
 import android.os.SystemClock
+import android.util.Log
+import com.igniterobotics.scouting_2019.Models.AutonResult
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private var isDefenseTimerOn = false
+    private var isClimbTimerOn = false
+    private var timeWhenClimbStopped: Long = 0
+    private var timeWhenDefenseStopped: Long = 0
+    private var _cargoCount = 0
+    private var _hatchCount = 0
+    private var _intakeDrop = 0
+    private var _dropCount = 0
+    private var _timingDefense = false
+    private var _timingClimb = false
+
+    private var _autonResult = AutonResult()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var timingDefense = false
-        var timingClimb = false
         // Get buttons
         var minusCargoButton = findViewById<Button>(R.id.minusCargoButton)
         var addCargoButton = findViewById<Button>(R.id.addCargoButton)
@@ -29,12 +44,50 @@ class MainActivity : AppCompatActivity() {
         var climbTimer = findViewById<Chronometer>(R.id.climbTimer)
         var defenseTimerButton = findViewById<Button>(R.id.defenseButton)
         var climbTimerButton = findViewById<Button>(R.id.climbTimerButton)
-        //var defenseButton = findViewById<Button>(R.id.defenseTime)
-        var isDefenseTimerOn = false
-        var isClimbTimerOn = false
-        var timeWhenClimbStopped: Long = 0
-        var timeWhenDefenseStopped: Long = 0
+        var endTelopButton = findViewById<Button>(R.id.endTelopButton)
 
+        var cargoCount = findViewById<TextView>(R.id.cargoCount)
+        var hatchCount = findViewById<TextView>(R.id.hatchCount)
+        var intakeErrorCount = findViewById<TextView>(R.id.intakeError)
+        var dropCount = findViewById<TextView>(R.id.dropCount)
+        //var defenseButton = findViewById<Button>(R.id.defenseTime)
+        Log.d("TAG", "########## CREATING #############")
+        if (savedInstanceState != null)
+        {
+            Log.d("TAG", "########## RESTORING STATE #############")
+            _cargoCount = savedInstanceState.run { getInt("_cargoCount") }
+            cargoCount.text = _cargoCount.toString()
+
+            _dropCount = savedInstanceState.run { getInt("_dropCount") }
+            dropCount.text = _dropCount.toString()
+
+            _intakeDrop = savedInstanceState.run { getInt("_intakeDrop") }
+            intakeErrorCount.text = _intakeDrop.toString()
+
+            _hatchCount = savedInstanceState.run { getInt("_hatchCount") }
+            hatchCount.text = _hatchCount.toString()
+
+            timeWhenClimbStopped = savedInstanceState.run { getLong("timeWhenClimbStopped") }
+            var climbBase = savedInstanceState.run { getLong("climbTimer")}
+            climbTimer.setBase(savedInstanceState.run { SystemClock.elapsedRealtime() + timeWhenClimbStopped })
+
+            timeWhenDefenseStopped = savedInstanceState.run { getLong("timeWhenDefenseStopped") }
+            var defenseBase = savedInstanceState.run { getLong("defenseTimer") }
+            defenseTimer.setBase(SystemClock.elapsedRealtime() + timeWhenDefenseStopped)
+        }
+        else {
+            Log.d("TAG","######### Getting data from the Intent")
+            this._autonResult = (intent.getParcelableExtra("AutonResult") as? AutonResult)!!
+            _cargoCount = _autonResult.cargoCount
+            _hatchCount = _autonResult.hatchCount
+            _dropCount = _autonResult.drops
+            _intakeDrop = _autonResult.intakeDrops
+
+            cargoCount.text = _cargoCount.toString()
+            dropCount.text = _dropCount.toString()
+            intakeErrorCount.text = _intakeDrop.toString()
+            hatchCount.text = _hatchCount.toString()
+        }
         defenseTimerButton.setOnClickListener() {
             if (!isDefenseTimerOn)
             {
@@ -65,99 +118,107 @@ class MainActivity : AppCompatActivity() {
                 timeWhenClimbStopped = climbTimer.getBase() - SystemClock.elapsedRealtime();
                 climbTimer.stop()
                 isClimbTimerOn = false
-                climbTimerButton.text = "Start Defense"
+                climbTimerButton.text = "Start Climb"
             }
         }
+
         minusCargoButton.setOnClickListener() {
-
-            var cargoCount =  findViewById(R.id.cargoCount) as TextView
-            var cnt = cargoCount.text.toString().toInt()
-            if (cnt > 0)
-                cnt--
+            if (_cargoCount > 0)
+                _cargoCount--
             else
-                cnt = 0
+                _cargoCount = 0
 
-            cargoCount.text = cnt.toString()
+            cargoCount.text = _cargoCount.toString()
             true
         }
 
         addCargoButton.setOnClickListener() {
-            var cargoCount =  findViewById(R.id.cargoCount) as TextView
-            var cnt = cargoCount.text.toString().toInt()
-            if (cnt <= 0)
-                cnt = 1
+            if (_cargoCount <= 0)
+                _cargoCount = 1
             else
-                cnt++
-            cargoCount.text = cnt.toString()
+                _cargoCount++
+            cargoCount.text = _cargoCount.toString()
             true
         }
 
         minusHatchButton.setOnClickListener() {
-            var hatchCount = findViewById(R.id.hatchCount) as TextView
-            var cnt = hatchCount.text.toString().toInt()
-            if (cnt > 0)
-                cnt--
+
+            if (_hatchCount > 0)
+                _hatchCount--
             else
-                cnt = 0
-            hatchCount.text = cnt.toString()
+                _hatchCount = 0
+            hatchCount.text = _hatchCount.toString()
             true
         }
 
         addHatchButton.setOnClickListener() {
-            var hatchCount = findViewById(R.id.hatchCount) as TextView
-            var cnt = hatchCount.text.toString().toInt()
-            if (cnt <= 0)
-                cnt = 1
+            if (_hatchCount <= 0)
+                _hatchCount = 1
             else
-                cnt++
-            hatchCount.text = cnt.toString()
+                _hatchCount++
+            hatchCount.text = _hatchCount.toString()
             true
         }
 
         substractIntakeErrorButton.setOnClickListener() {
-            var intakeErrorCount = findViewById(R.id.intakeError) as TextView
-            var cnt = intakeErrorCount.text.toString().toInt()
-            if (cnt > 0)
-                cnt--
+            if (_intakeDrop > 0)
+                _intakeDrop--
             else
-                cnt = 0
-            intakeErrorCount.text = cnt.toString()
+                _intakeDrop = 0
+            intakeErrorCount.text = _intakeDrop.toString()
             true
         }
 
         addIntakeErrorButton.setOnClickListener() {
-            var intakeErrorCount = findViewById(R.id.intakeError) as TextView
-            var cnt = intakeErrorCount.text.toString().toInt()
-            if (cnt <= 0)
-                cnt = 1
+            if (_intakeDrop <= 0)
+                _intakeDrop = 1
             else
-                cnt++
-            intakeErrorCount.text = cnt.toString()
+                _intakeDrop++
+            intakeErrorCount.text = _intakeDrop.toString()
             true
         }
 
         minusDropButton.setOnClickListener() {
-            var dropCount = findViewById(R.id.dropCount) as TextView
-            var cnt = dropCount.text.toString().toInt()
-            if (cnt > 0)
-                cnt--
+
+            if (_dropCount > 0)
+                _dropCount--
             else
-                cnt = 0
-            dropCount.text = cnt.toString()
+                _dropCount = 0
+            dropCount.text = _dropCount.toString()
             true
         }
 
         addDropButton.setOnClickListener() {
-            var dropCount = findViewById(R.id.dropCount) as TextView
-            var cnt = dropCount.text.toString().toInt()
-            if (cnt <= 0)
-                cnt = 1
+            if (_dropCount <= 0)
+                _dropCount = 1
             else
-                cnt++
-            dropCount.text = cnt.toString()
+                _dropCount++
+            dropCount.text = _dropCount.toString()
             true
         }
 
+        endTelopButton.setOnClickListener(){
+
+            val intent = Intent(this, PostMatchScoring::class.java)
+            startActivity(intent)
+        }
 
     }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+
+        Log.d("TAG", "########## SAVING DATA #############")
+
+        var climb = climbTimer.getBase()
+        Log.d("TAG", "#################    climb time : " + climb.toString())
+        outState?.putInt("_dropCount", _dropCount)
+        outState?.putInt("_intakeDrop", _intakeDrop)
+        outState?.putInt("_cargoCount", _cargoCount)
+        outState?.putInt("_hatchCount", _hatchCount)
+        outState?.putLong("climbTime", climbTimer.getBase())
+        outState?.putLong("defenseTime", defenseTimer.getBase())
+        outState?.putLong("timeWhenDefenseStopped", timeWhenDefenseStopped)
+        outState?.putLong("timeWhenClimbStopped", timeWhenClimbStopped)
+        }
 }
