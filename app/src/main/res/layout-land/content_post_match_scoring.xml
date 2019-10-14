@@ -14,51 +14,51 @@
         android:id="@+id/sandstormPoints"
         android:layout_width="80dp"
         android:layout_height="44dp"
-        android:layout_marginTop="225dp"
+        android:layout_marginTop="35dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cargoPoints" />
 
     <EditText
         android:id="@+id/hatchPoints"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="290dp"
+        android:layout_marginTop="35dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/sandstormPoints" />
 
     <EditText
         android:id="@+id/cargoPoints"
         android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="345dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="35dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toTopOf="@+id/guideline9" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/habClimbPoints"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="425dp"
+        android:layout_marginTop="35dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/hatchPoints" />
 
     <EditText
         android:id="@+id/penalties"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="35dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/habClimbPoints" />
 
     <CheckBox
         android:id="@+id/rocketRp"
@@ -76,8 +76,9 @@
         android:layout_height="32dp"
         android:layout_marginTop="65dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
         app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
@@ -104,8 +105,8 @@
         android:layout_width="300dp"
         android:layout_height="32dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
         app:layout_constraintTop_toBottomOf="@+id/textView12">
 
         <RadioButton
@@ -137,8 +138,8 @@
         android:layout_marginTop="30dp"
         android:text="Attempted HAB"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -148,8 +149,8 @@
         android:layout_marginTop="125dp"
         android:text="Scored Hab"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -197,10 +198,10 @@
         android:id="@+id/MatchResult"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="700dp"
+        android:layout_marginTop="375dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
         app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
@@ -236,14 +237,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="175dp" />
+        app:layout_constraintGuide_begin="588dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="336dp" />
+        app:layout_constraintGuide_begin="747dp" />
 
     <TextView
         android:id="@+id/textView18"
@@ -259,21 +260,28 @@
         android:id="@+id/yellowCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="550dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="600dp"
         android:text="Yellow Card"
-        app:layout_constraintEnd_toStartOf="@+id/redCard"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
         app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
     <CheckBox
         android:id="@+id/redCard"
+        android:layout_width="91dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:text="Red Card"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="@+id/yellowCard" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Red Card"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/yellowCard"
-        app:layout_constraintTop_toTopOf="@+id/yellowCard" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="180dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
