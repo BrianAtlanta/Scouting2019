@@ -24,7 +24,9 @@ class MainActivity : AppCompatActivity() {
     private var _dropCount = 0
     private var _timingDefense = false
     private var _timingClimb = false
-
+    private var _startOfTeleop: Long = 0
+    private var _dStart: Long = 0
+    private var _dStop: Long = 0
     private var _autonResult = AutonResult()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,21 +89,25 @@ class MainActivity : AppCompatActivity() {
             dropCount.text = _dropCount.toString()
             intakeErrorCount.text = _intakeDrop.toString()
             hatchCount.text = _hatchCount.toString()
+            _startOfTeleop = System.currentTimeMillis()
         }
         defenseTimerButton.setOnClickListener() {
             if (!isDefenseTimerOn)
             {
+                _dStart = System.currentTimeMillis()
+
                 defenseTimer.setBase(SystemClock.elapsedRealtime() + timeWhenDefenseStopped)
                 defenseTimer.start();
                 isDefenseTimerOn = true;
-                defenseTimerButton.text = "Stop Defense"
+                defenseTimerButton.text = "Start " + ((_dStart - _startOfTeleop)).toString()
             }
             else
             {
+                _dStop = System.currentTimeMillis()
                 timeWhenDefenseStopped = defenseTimer.getBase() - SystemClock.elapsedRealtime();
                 defenseTimer.stop()
                 isDefenseTimerOn = false
-                defenseTimerButton.text = "Start Defense"
+                defenseTimerButton.text = "Stop " + ((_dStop - _startOfTeleop)).toString()
             }
         }
 
