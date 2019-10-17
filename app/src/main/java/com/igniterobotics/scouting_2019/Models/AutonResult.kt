@@ -1,6 +1,6 @@
 package com.igniterobotics.scouting_2019.Models
 
-import android.os.Parcel
+import kotlinx.android.parcel.Parcelize
 import android.os.Parcelable
 import com.igniterobotics.scouting_2019.Enums.Movement
 import com.igniterobotics.scouting_2019.Enums.Preload
@@ -15,4 +15,4 @@ data class AutonResult(
     var startingPosision: StartingPosition,
     var preload: Preload,
     var movement: Movement
-)
+): Parcelable

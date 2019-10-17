@@ -9,6 +9,9 @@ import android.widget.TextView
 import android.widget.Chronometer
 import android.os.SystemClock
 import android.util.Log
+import com.igniterobotics.scouting_2019.Enums.Movement
+import com.igniterobotics.scouting_2019.Enums.Preload
+import com.igniterobotics.scouting_2019.Enums.StartingPosition
 import com.igniterobotics.scouting_2019.Models.AutonResult
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -27,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     private var _startOfTeleop: Long = 0
     private var _dStart: Long = 0
     private var _dStop: Long = 0
-    private var _autonResult = AutonResult()
+    private var _autonResult: AutonResult = AutonResult(0,0,0,0,StartingPosition.NotSet, Preload.NotSet, Movement.NotSet)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,8 +85,8 @@ class MainActivity : AppCompatActivity() {
             this._autonResult = (intent.getParcelableExtra("AutonResult") as? AutonResult)!!
             _cargoCount = _autonResult.cargoCount
             _hatchCount = _autonResult.hatchCount
-            _dropCount = _autonResult.drops
-            _intakeDrop = _autonResult.intakeDrops
+            _dropCount = _autonResult.itemDrops
+            _intakeDrop = _autonResult.intakeDrop
 
             cargoCount.text = _cargoCount.toString()
             dropCount.text = _dropCount.toString()

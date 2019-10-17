@@ -1,5 +1,9 @@
 package com.igniterobotics.scouting_2019.Models
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class TeleopResult (
     var hatchCount: Int,
     var cargoCount: Int,
@@ -11,7 +15,10 @@ data class TeleopResult (
     var level2Ability: Boolean,
     var level3Ability: Boolean,
     var climbTime: Int,
-    var totalDefenseTime: Int,
+    var totalDefenseTime: Int
+    /*,
     var defensePeriods: mutableListOf<defensedPeriod>(),
     var hatchScoringTime: mutableListOf<Int> = null
-)
+
+     */
+): Parcelable

@@ -15,6 +15,7 @@ import android.content.Intent
 import com.igniterobotics.scouting_2019.Enums.Movement
 import com.igniterobotics.scouting_2019.Enums.Preload
 import com.igniterobotics.scouting_2019.Enums.StartingPosition
+import kotlinx.android.synthetic.main.content_auton_scoring.*
 
 class AutonScoring : AppCompatActivity() {
 
@@ -166,16 +167,20 @@ class AutonScoring : AppCompatActivity() {
     }
 
     fun GetAutonResult(): AutonResult {
-        var autonResult = AutonResult()
-        autonResult.cargoCount = _aCargoCount
-        autonResult.hatchCount = _aHatchCount
-        autonResult.intakeDrops = _aIntakeDrop
-        autonResult.drops = _aDropCount
+        var autonResult = AutonResult(_aHatchCount, _aCargoCount, _aIntakeDrop, _aDropCount, StartingPosition.NotSet, Preload.NotSet, Movement.NotSet)
+        var x = findViewById<Spinner>(R.id.startingPosition).selectedItemPosition
+        Log.d("TAG", "Position : " +x.toString())
 
+        var y = findViewById<Spinner>(R.id.startingPosition).selectedItemId
+        Log.d("TAG", "ItemID : " +y.toString())
+
+        var z = findViewById<Spinner>(R.id.startingPosition).selectedItem
+        Log.d("TAG", "Item : " +z.toString())
+/*
         autonResult.startingPosition = findViewById<Spinner>(R.id.startingPosition).selectedItemPosition
         autonResult.preload = findViewById<Spinner>(R.id.preload).selectedItemPosition
         autonResult.movement = findViewById<Spinner>(R.id.movement).selectedItemPosition
-
+*/
         return autonResult
     }
     override fun onSaveInstanceState(outState: Bundle?) {
