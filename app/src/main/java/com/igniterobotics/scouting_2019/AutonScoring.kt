@@ -16,6 +16,12 @@ import com.igniterobotics.scouting_2019.Enums.Movement
 import com.igniterobotics.scouting_2019.Enums.Preload
 import com.igniterobotics.scouting_2019.Enums.StartingPosition
 import kotlinx.android.synthetic.main.content_auton_scoring.*
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import com.igniterobotics.scouting_2019.Models.MatchResult
+
 
 class AutonScoring : AppCompatActivity() {
 
@@ -23,14 +29,17 @@ class AutonScoring : AppCompatActivity() {
     private var _aHatchCount = 0
     private var _aIntakeDrop = 0
     private var _aDropCount = 0
+    lateinit var _matchResult: MatchResult
 
-    var startPositionOptions = arrayOf("--- NOT SET ---","Level 1 - Near", "Level 1 - Middle", "Level 1 - Far", "Level 2 - Near", "Level 2 - Far", "Level 3")
-    var preloadOptions = arrayOf("--- NOT SET ---","Hatch", "Cargo")
+
     var movementOptions = arrayOf("--- NOT SET ---","None", "Did Not Cross", "Crossed", "Too Far")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auton_scoring)
         setSupportActionBar(toolbar)
+
+        var data = intent.extras
+        _matchResult = data?.getParcelable<MatchResult>("MatchResult")!!
 
         var minusCargoButton = findViewById<Button>(R.id.aMinusCargoButton)
         var addCargoButton = findViewById<Button>(R.id.aAddCargoButton)
@@ -47,17 +56,6 @@ class AutonScoring : AppCompatActivity() {
         var intakeErrorCount = findViewById<TextView>(R.id.aIntakeError)
         var dropCount = findViewById<TextView>(R.id.aDropCount)
 
-
-        var positionSpinner = findViewById<Spinner>(R.id.startingPosition)
-        val positionAdapter = ArrayAdapter(this, R.layout.ignite_spinner, startPositionOptions)
-        positionAdapter.setDropDownViewResource(R.layout.ignite_spinner)
-        positionSpinner.adapter = positionAdapter
-
-
-        var preloadSpinner = findViewById<Spinner>(R.id.preload)
-        val preloadAdapter = ArrayAdapter(this, R.layout.ignite_spinner, preloadOptions)
-        preloadAdapter.setDropDownViewResource(R.layout.ignite_spinner)
-        preloadSpinner.adapter = preloadAdapter
 
         var movementSpinner = findViewById<Spinner>(R.id.movement)
         val movementAdapter = ArrayAdapter(this, R.layout.ignite_spinner, movementOptions)
@@ -97,6 +95,9 @@ class AutonScoring : AppCompatActivity() {
             else
                 _aCargoCount++
             cargoCount.text = _aCargoCount.toString()
+            if (movementSpinner.selectedItemPosition == 0)
+                movementSpinner.setSelection(3)
+
             true
         }
         minusHatchButton.setOnClickListener() {
@@ -115,6 +116,8 @@ class AutonScoring : AppCompatActivity() {
             else
                 _aHatchCount++
             hatchCount.text = _aHatchCount.toString()
+            if (movementSpinner.selectedItemPosition == 0)
+                movementSpinner.setSelection(3)
             true
         }
 
@@ -133,6 +136,8 @@ class AutonScoring : AppCompatActivity() {
             else
                 _aIntakeDrop++
             intakeErrorCount.text = _aIntakeDrop.toString()
+            if (movementSpinner.selectedItemPosition == 0)
+                movementSpinner.setSelection(3)
             true
         }
 
@@ -152,36 +157,33 @@ class AutonScoring : AppCompatActivity() {
             else
                 _aDropCount++
             dropCount.text = _aDropCount.toString()
+            if (movementSpinner.selectedItemPosition == 0)
+                movementSpinner.setSelection(3)
             true
         }
 
         startTelopButton.setOnClickListener() {
-            var autonResult =  GetAutonResult()
+            GetAutonResult()
             val intent = Intent(this, MainActivity::class.java)
-            Log.d("TAG","######### Intent created")
-            intent.putExtra("AutonResult", autonResult)
-            Log.d("TAG","######### auton saved in INTENT")
+            intent.putExtra("MatchResult", _matchResult)
             startActivity(intent)
         }
 
     }
 
-    fun GetAutonResult(): AutonResult {
-        var autonResult = AutonResult(_aHatchCount, _aCargoCount, _aIntakeDrop, _aDropCount, StartingPosition.NotSet, Preload.NotSet, Movement.NotSet)
-        var x = findViewById<Spinner>(R.id.startingPosition).selectedItemPosition
-        Log.d("TAG", "Position : " +x.toString())
+    fun GetAutonResult(){
 
-        var y = findViewById<Spinner>(R.id.startingPosition).selectedItemId
-        Log.d("TAG", "ItemID : " +y.toString())
-
-        var z = findViewById<Spinner>(R.id.startingPosition).selectedItem
-        Log.d("TAG", "Item : " +z.toString())
-/*
-        autonResult.startingPosition = findViewById<Spinner>(R.id.startingPosition).selectedItemPosition
-        autonResult.preload = findViewById<Spinner>(R.id.preload).selectedItemPosition
-        autonResult.movement = findViewById<Spinner>(R.id.movement).selectedItemPosition
-*/
-        return autonResult
+        _matchResult.autonResult.hatchCount = _aHatchCount
+        _matchResult.autonResult.cargoCount = _aCargoCount
+        _matchResult.autonResult.intakeDrop = _aIntakeDrop
+        _matchResult.autonResult.itemDrops = _aDropCount
+        when(movement.selectedItemPosition) {
+            0 -> _matchResult.autonResult.movement = Movement.NotSet
+            1 -> _matchResult.autonResult.movement = Movement.None
+            2 -> _matchResult.autonResult.movement = Movement.DidNotCross
+            3 -> _matchResult.autonResult.movement = Movement.Crossed
+            4 -> _matchResult.autonResult.movement = Movement.TooFar
+        }
     }
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
@@ -194,6 +196,17 @@ class AutonScoring : AppCompatActivity() {
         outState?.putInt("_aCargoCount", _aCargoCount)
         outState?.putInt("_aHatchCount", _aHatchCount)
 
+    }
+
+    override fun onBackPressed() {
+        true
+/*        if (!shouldAllowBack()) {
+            doSomething()
+        } else {
+            super.onBackPressed()
+        }
+
+ */
     }
 
 }

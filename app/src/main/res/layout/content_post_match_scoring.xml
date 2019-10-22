@@ -1,279 +1,339 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".PostMatchScoring"
-    tools:showIn="@layout/activity_post_match_scoring">
+    android:fillViewport="true">
 
-    <EditText
-        android:id="@+id/sandstormPoints"
-        android:layout_width="80dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="225dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".PostMatchScoring"
+        tools:showIn="@layout/activity_post_match_scoring">
 
-    <EditText
-        android:id="@+id/hatchPoints"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="290dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/sandstormPoints"
+            android:layout_width="80dp"
+            android:layout_height="44dp"
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="@+id/textView13"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
+            app:layout_constraintTop_toTopOf="@+id/textView13" />
 
-    <EditText
-        android:id="@+id/cargoPoints"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="345dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toTopOf="@+id/guideline9" />
-
-    <EditText
-        android:id="@+id/habClimbPoints"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="425dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/penalties"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="@+id/guideline11"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <CheckBox
-        android:id="@+id/rocketRp"
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="630dp"
-        android:text="Rocket RP"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <RadioGroup
-        android:id="@+id/HabAttemped"
-        android:layout_width="300dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="65dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <RadioButton
-            android:id="@+id/attemptOne"
-            android:layout_width="100dp"
+        <EditText
+            android:id="@+id/hatchPoints"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="Level 1" />
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="@+id/textView18"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/textView18"
+            app:layout_constraintTop_toTopOf="@+id/textView18" />
 
-        <RadioButton
-            android:id="@+id/attemptTwo"
-            android:layout_width="100dp"
+        <EditText
+            android:id="@+id/cargoPoints"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="Level 2" />
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="@+id/textView15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/textView15"
+            app:layout_constraintTop_toTopOf="@+id/textView15" />
 
-        <RadioButton
-            android:id="@+id/attemptThree"
-            android:layout_width="100dp"
+        <EditText
+            android:id="@+id/habClimbPoints"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="Level 3" />
-    </RadioGroup>
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="@+id/textView16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/textView16"
+            app:layout_constraintTop_toTopOf="@+id/textView16" />
 
-    <RadioGroup
-        android:id="@+id/HabScored"
-        android:layout_width="300dp"
-        android:layout_height="32dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12">
-
-        <RadioButton
-            android:id="@+id/scoredOne"
-            android:layout_width="100dp"
+        <EditText
+            android:id="@+id/penalties"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Level 1" />
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="@+id/textView17"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/textView17"
+            app:layout_constraintTop_toTopOf="@+id/textView17" />
 
-        <RadioButton
-            android:id="@+id/scoredTwo"
-            android:layout_width="100dp"
+        <CheckBox
+            android:id="@+id/rocketRp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Level 2" />
+            android:layout_marginTop="24dp"
+            android:text="Rocket RP"
+            app:layout_constraintEnd_toStartOf="@+id/habRp"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/yellowCard" />
 
-        <RadioButton
-            android:id="@+id/scoredThree"
-            android:layout_width="100dp"
+        <RadioGroup
+            android:id="@+id/HabAttemped"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Level 3" />
-    </RadioGroup>
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6">
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:layout_marginTop="30dp"
-        android:text="Attempted HAB"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <RadioButton
+                android:id="@+id/attemptOne"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Level 1" />
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="125dp"
-        android:text="Scored Hab"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <RadioButton
+                android:id="@+id/attemptTwo"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Level 2" />
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Auton Score"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/sandstormPoints"
-        app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toTopOf="@+id/sandstormPoints"
-        app:layout_constraintVertical_bias="0.0" />
+            <RadioButton
+                android:id="@+id/attemptThree"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Level 3" />
+        </RadioGroup>
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cargo"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/cargoPoints"
-        app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toTopOf="@+id/cargoPoints" />
+        <RadioGroup
+            android:id="@+id/HabScored"
+            android:layout_width="300dp"
+            android:layout_height="32dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12">
 
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hab"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/habClimbPoints"
-        app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toTopOf="@+id/habClimbPoints" />
+            <RadioButton
+                android:id="@+id/scoredOne"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Level 1" />
 
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Penalties"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/penalties"
-        app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toTopOf="@+id/penalties" />
+            <RadioButton
+                android:id="@+id/scoredTwo"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Level 2" />
 
-    <RadioGroup
-        android:id="@+id/MatchResult"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="700dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+            <RadioButton
+                android:id="@+id/scoredThree"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Level 3" />
+        </RadioGroup>
 
-        <RadioButton
-            android:id="@+id/wonMatch"
-            android:layout_width="100dp"
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginTop="60dp"
+            android:text="Attempted HAB"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Win" />
+            android:layout_marginTop="24dp"
+            android:text="Scored Hab"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rocketLevel3" />
 
-        <RadioButton
-            android:id="@+id/tiedMatch"
-            android:layout_width="100dp"
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Tied" />
+            android:layout_marginTop="24dp"
+            android:text="Auton Score"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/sandstormPoints"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/HabScored" />
 
-        <RadioButton
-            android:id="@+id/lostMatch"
-            android:layout_width="100dp"
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Lost" />
-    </RadioGroup>
+            android:layout_marginTop="24dp"
+            android:text="Cargo"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/cargoPoints"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="879dp" />
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Hab"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/habClimbPoints"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="175dp" />
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Penalties"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/penalties"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="336dp" />
+        <RadioGroup
+            android:id="@+id/MatchResult"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rocketRp">
 
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hatch Panel"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/hatchPoints"
-        app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toTopOf="@+id/hatchPoints" />
+            <RadioButton
+                android:id="@+id/wonMatch"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Win" />
 
-    <CheckBox
-        android:id="@+id/yellowCard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="550dp"
-        android:text="Yellow Card"
-        app:layout_constraintEnd_toStartOf="@+id/redCard"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline9" />
+            <RadioButton
+                android:id="@+id/tiedMatch"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Tied" />
 
-    <CheckBox
-        android:id="@+id/redCard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Red Card"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/yellowCard"
-        app:layout_constraintTop_toTopOf="@+id/yellowCard" />
+            <RadioButton
+                android:id="@+id/lostMatch"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Lost" />
+        </RadioGroup>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Hatch Panel"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/hatchPoints"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <CheckBox
+            android:id="@+id/yellowCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Yellow Card"
+            app:layout_constraintEnd_toStartOf="@+id/redCard"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+        <CheckBox
+            android:id="@+id/redCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Red Card"
+            app:layout_constraintBottom_toBottomOf="@+id/yellowCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/yellowCard"
+            app:layout_constraintTop_toTopOf="@+id/yellowCard" />
+
+        <CheckBox
+            android:id="@+id/rocketLevel2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Can score rocket Level 2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/HabAttemped" />
+
+        <CheckBox
+            android:id="@+id/rocketLevel3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Can score rocket level 3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rocketLevel2" />
+
+        <Button
+            android:id="@+id/submitScoresButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="25dp"
+            android:text="Submit Scores"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/MatchResult" />
+
+        <CheckBox
+            android:id="@+id/habRp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hab RP"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/rocketRp"
+            tools:layout_editor_absoluteY="684dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

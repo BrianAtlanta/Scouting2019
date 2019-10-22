@@ -13,6 +13,7 @@ import com.igniterobotics.scouting_2019.Enums.Movement
 import com.igniterobotics.scouting_2019.Enums.Preload
 import com.igniterobotics.scouting_2019.Enums.StartingPosition
 import com.igniterobotics.scouting_2019.Models.AutonResult
+import com.igniterobotics.scouting_2019.Models.MatchResult
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -30,12 +31,14 @@ class MainActivity : AppCompatActivity() {
     private var _startOfTeleop: Long = 0
     private var _dStart: Long = 0
     private var _dStop: Long = 0
-    private var _autonResult: AutonResult = AutonResult(0,0,0,0,StartingPosition.NotSet, Preload.NotSet, Movement.NotSet)
+    lateinit var _matchResult: MatchResult
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var data = intent.extras
+        _matchResult = data?.getParcelable<MatchResult>("MatchResult")!!
         // Get buttons
         var minusCargoButton = findViewById<Button>(R.id.minusCargoButton)
         var addCargoButton = findViewById<Button>(R.id.addCargoButton)
@@ -45,8 +48,8 @@ class MainActivity : AppCompatActivity() {
         var substractIntakeErrorButton = findViewById<Button>(R.id.substractIntakeError)
         var addDropButton = findViewById<Button>(R.id.addDropButton)
         var minusDropButton = findViewById<Button>(R.id.minusDropButton)
-        var defenseTimer = findViewById<Chronometer>(R.id.defenseTimer)
-        var climbTimer = findViewById<Chronometer>(R.id.climbTimer)
+      //  var defenseTimer = findViewById<Chronometer>(R.id.defenseTimer)
+       // var climbTimer = findViewById<Chronometer>(R.id.climbTimer)
         var defenseTimerButton = findViewById<Button>(R.id.defenseButton)
         var climbTimerButton = findViewById<Button>(R.id.climbTimerButton)
         var endTelopButton = findViewById<Button>(R.id.endTelopButton)
@@ -56,44 +59,20 @@ class MainActivity : AppCompatActivity() {
         var intakeErrorCount = findViewById<TextView>(R.id.intakeError)
         var dropCount = findViewById<TextView>(R.id.dropCount)
         //var defenseButton = findViewById<Button>(R.id.defenseTime)
-        Log.d("TAG", "########## CREATING #############")
-        if (savedInstanceState != null)
-        {
-            Log.d("TAG", "########## RESTORING STATE #############")
-            _cargoCount = savedInstanceState.run { getInt("_cargoCount") }
-            cargoCount.text = _cargoCount.toString()
 
-            _dropCount = savedInstanceState.run { getInt("_dropCount") }
-            dropCount.text = _dropCount.toString()
 
-            _intakeDrop = savedInstanceState.run { getInt("_intakeDrop") }
-            intakeErrorCount.text = _intakeDrop.toString()
-
-            _hatchCount = savedInstanceState.run { getInt("_hatchCount") }
-            hatchCount.text = _hatchCount.toString()
-
-            timeWhenClimbStopped = savedInstanceState.run { getLong("timeWhenClimbStopped") }
-            var climbBase = savedInstanceState.run { getLong("climbTimer")}
-            climbTimer.setBase(savedInstanceState.run { SystemClock.elapsedRealtime() + timeWhenClimbStopped })
-
-            timeWhenDefenseStopped = savedInstanceState.run { getLong("timeWhenDefenseStopped") }
-            var defenseBase = savedInstanceState.run { getLong("defenseTimer") }
-            defenseTimer.setBase(SystemClock.elapsedRealtime() + timeWhenDefenseStopped)
-        }
-        else {
-            Log.d("TAG","######### Getting data from the Intent")
-            this._autonResult = (intent.getParcelableExtra("AutonResult") as? AutonResult)!!
-            _cargoCount = _autonResult.cargoCount
-            _hatchCount = _autonResult.hatchCount
-            _dropCount = _autonResult.itemDrops
-            _intakeDrop = _autonResult.intakeDrop
+            _cargoCount = _matchResult.autonResult.cargoCount
+            _hatchCount = _matchResult.autonResult.hatchCount
+            _dropCount = _matchResult.autonResult.itemDrops
+            _intakeDrop = _matchResult.autonResult.intakeDrop
 
             cargoCount.text = _cargoCount.toString()
             dropCount.text = _dropCount.toString()
             intakeErrorCount.text = _intakeDrop.toString()
             hatchCount.text = _hatchCount.toString()
             _startOfTeleop = System.currentTimeMillis()
-        }
+
+        /*
         defenseTimerButton.setOnClickListener() {
             if (!isDefenseTimerOn)
             {
@@ -130,6 +109,8 @@ class MainActivity : AppCompatActivity() {
                 climbTimerButton.text = "Start Climb"
             }
         }
+
+         */
 
         minusCargoButton.setOnClickListener() {
             if (_cargoCount > 0)
@@ -208,26 +189,31 @@ class MainActivity : AppCompatActivity() {
 
         endTelopButton.setOnClickListener(){
 
+            if (_cargoCount > _matchResult.autonResult.cargoCount)
+                _matchResult.telopResult.cargoCount = _cargoCount - _matchResult.autonResult.cargoCount
+            else
+                _matchResult.autonResult.cargoCount = _cargoCount
+
+            if (_hatchCount > _matchResult.autonResult.hatchCount)
+                _matchResult.telopResult.hatchCount = _hatchCount - _matchResult.autonResult.hatchCount
+            else
+                _matchResult.autonResult.hatchCount = _hatchCount
+
+            if (_intakeDrop > _matchResult.autonResult.itemDrops)
+                _matchResult.telopResult.intakeDrops = _intakeDrop - _matchResult.autonResult.itemDrops
+            else
+                _matchResult.autonResult.itemDrops = _intakeDrop
+
+            if (_dropCount > _matchResult.autonResult.itemDrops)
+                _matchResult.telopResult.drops = _dropCount - _matchResult.autonResult.itemDrops
+            else
+                _matchResult.autonResult.itemDrops = _intakeDrop
+
             val intent = Intent(this, PostMatchScoring::class.java)
+            intent.putExtra("MatchResult", _matchResult)
             startActivity(intent)
         }
 
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
-        super.onSaveInstanceState(outState)
-
-        Log.d("TAG", "########## SAVING DATA #############")
-
-        var climb = climbTimer.getBase()
-        Log.d("TAG", "#################    climb time : " + climb.toString())
-        outState?.putInt("_dropCount", _dropCount)
-        outState?.putInt("_intakeDrop", _intakeDrop)
-        outState?.putInt("_cargoCount", _cargoCount)
-        outState?.putInt("_hatchCount", _hatchCount)
-        outState?.putLong("climbTime", climbTimer.getBase())
-        outState?.putLong("defenseTime", defenseTimer.getBase())
-        outState?.putLong("timeWhenDefenseStopped", timeWhenDefenseStopped)
-        outState?.putLong("timeWhenClimbStopped", timeWhenClimbStopped)
-        }
 }

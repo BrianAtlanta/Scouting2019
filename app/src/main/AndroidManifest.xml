@@ -9,14 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".PostMatchScoring"
-            android:label="@string/title_activity_post_match_scoring"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".AutonScoring"
-            android:label="Auton Scoring"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".MatchSelection"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +18,22 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".PostMatchScoring"
+            android:label="@string/title_activity_post_match_scoring"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AutonScoring"
+            android:label="Auton Scoring"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".MainActivity"
-            android:label="Teleop Scoring" />
+            android:label="Teleop Scoring"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PreMatch"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

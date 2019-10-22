@@ -172,7 +172,7 @@
         android:layout_width="wrap_content"
         android:layout_height="47dp"
         android:gravity="center_horizontal"
-        android:text="CARGO"
+        android:text="FARGO"
         android:textSize="35sp"
         app:layout_constraintBottom_toTopOf="@+id/aCargoCount"
         app:layout_constraintEnd_toEndOf="@+id/aAddCargoButton"
@@ -201,7 +201,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline5" />
 
     <Spinner
-        android:id="@+id/startingPosition"
+        android:id="@+id/prematchPosition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -241,7 +241,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <Spinner
-        android:id="@+id/preload"
+        android:id="@+id/prematchPreload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/textView10"

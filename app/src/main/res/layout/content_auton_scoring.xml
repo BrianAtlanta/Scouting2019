@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,34 +16,42 @@
 
         <TextView
             android:id="@+id/textView11"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:gravity="left"
             android:text="Dropped Item"
-            android:textAllCaps="true"
-            android:textSize="25sp"
-            tools:layout_editor_absoluteX="20dp"
-            tools:layout_editor_absoluteY="458dp" />
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/aMinusDropButton"
+            app:layout_constraintEnd_toStartOf="@+id/aMinusDropButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/aMinusDropButton" />
 
         <Button
             android:id="@+id/aMinusDropButton"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@drawable/subtract_minus"
+            app:layout_constraintBottom_toBottomOf="@+id/aDropCount"
             app:layout_constraintEnd_toStartOf="@+id/aDropCount"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/guideline3"
-            tools:layout_editor_absoluteY="550dp" />
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/textView11"
+            app:layout_constraintTop_toTopOf="@+id/aDropCount" />
 
         <Button
             android:id="@+id/aDropButton"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="35dp"
             android:background="@drawable/add_plus"
-            app:layout_constraintEnd_toStartOf="@+id/guideline5"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/aDropCount"
-            tools:layout_editor_absoluteY="550dp" />
+            app:layout_constraintTop_toBottomOf="@+id/aAddIntakeError" />
 
         <TextView
             android:id="@+id/aDropCount"
@@ -52,40 +61,52 @@
             android:includeFontPadding="false"
             android:text="0"
             android:textSize="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/aDropButton"
             app:layout_constraintEnd_toStartOf="@+id/aDropButton"
             app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/aMinusDropButton"
-            tools:layout_editor_absoluteY="560dp"
+            app:layout_constraintTop_toTopOf="@+id/aDropButton"
             tools:text="0" />
 
         <TextView
             android:id="@+id/textView7"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:gravity="left"
             android:text="HATCH"
-            android:textSize="35sp"
-            app:layout_constraintBottom_toTopOf="@+id/aHatchCount"
-            app:layout_constraintEnd_toEndOf="@+id/aAddHatchButton"
-            app:layout_constraintStart_toStartOf="@+id/aMinusHatchButton" />
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@+id/aMinusHatchButton"
+            app:layout_constraintEnd_toStartOf="@+id/aMinusHatchButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/aMinusHatchButton" />
 
         <Button
             android:id="@+id/aAddHatchButton"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="35dp"
             android:background="@drawable/add_button2"
-            app:layout_constraintEnd_toEndOf="@+id/aAddIntakeError"
-            app:layout_constraintTop_toBottomOf="@+id/aMinusCargoButton" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/aHatchCount"
+            app:layout_constraintTop_toBottomOf="@+id/aAddCargoButton" />
+
 
         <Button
             android:id="@+id/aMinusHatchButton"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@drawable/subtract_button"
-            app:layout_constraintBottom_toBottomOf="@+id/aAddHatchButton"
+            app:layout_constraintBottom_toBottomOf="@+id/aHatchCount"
             app:layout_constraintEnd_toStartOf="@+id/aHatchCount"
-            app:layout_constraintTop_toTopOf="@+id/aAddHatchButton" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/textView7"
+            app:layout_constraintTop_toTopOf="@+id/aHatchCount" />
 
         <TextView
             android:id="@+id/aHatchCount"
@@ -97,30 +118,35 @@
             android:textSize="50sp"
             app:layout_constraintBottom_toBottomOf="@+id/aAddHatchButton"
             app:layout_constraintEnd_toStartOf="@+id/aAddHatchButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/aMinusHatchButton"
             app:layout_constraintTop_toTopOf="@+id/aAddHatchButton"
             tools:text="0" />
 
-
         <Button
             android:id="@+id/aAddIntakeError"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="35dp"
             android:background="@drawable/add_plus"
-            app:layout_constraintBottom_toBottomOf="@+id/aSubstractIntakeError"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/aIntakeError"
-            app:layout_constraintTop_toTopOf="@+id/aSubstractIntakeError"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/aAddHatchButton" />
 
         <Button
             android:id="@+id/aSubstractIntakeError"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@drawable/subtract_minus"
-            app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/aAddHatchButton" />
+            app:layout_constraintBottom_toBottomOf="@+id/aIntakeError"
+            app:layout_constraintEnd_toStartOf="@+id/aIntakeError"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="@+id/aIntakeError" />
 
         <TextView
             android:id="@+id/aIntakeError"
@@ -130,64 +156,82 @@
             android:includeFontPadding="false"
             android:text="0"
             android:textSize="50sp"
-            app:layout_constraintBottom_toBottomOf="@+id/aSubstractIntakeError"
+            app:layout_constraintBottom_toBottomOf="@+id/aAddIntakeError"
+            app:layout_constraintEnd_toStartOf="@+id/aAddIntakeError"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/aSubstractIntakeError"
-            app:layout_constraintTop_toTopOf="@+id/aSubstractIntakeError"
+            app:layout_constraintTop_toTopOf="@+id/aAddIntakeError"
             tools:text="0" />
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:gravity="left"
             android:text="Intake Drop"
-            android:textAllCaps="true"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toTopOf="@+id/aIntakeError"
-            app:layout_constraintEnd_toEndOf="@+id/aAddIntakeError"
-            app:layout_constraintStart_toStartOf="@+id/aSubstractIntakeError" />
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/aSubstractIntakeError"
+            app:layout_constraintEnd_toStartOf="@+id/aSubstractIntakeError"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/aSubstractIntakeError" />
 
         <Button
             android:id="@+id/aAddCargoButton"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@drawable/add_button2"
-            app:layout_constraintBottom_toBottomOf="@+id/aMinusCargoButton"
+            app:layout_constraintBottom_toBottomOf="@+id/aCargoCount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/aCargoCount"
-            app:layout_constraintTop_toTopOf="@+id/aMinusCargoButton" />
+            app:layout_constraintTop_toTopOf="@+id/aCargoCount" />
 
         <Button
             android:id="@+id/aMinusCargoButton"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="100dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@drawable/subtract_button"
-            app:layout_constraintStart_toStartOf="@+id/aMinusHatchButton"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/aCargoCount"
+            app:layout_constraintEnd_toStartOf="@+id/aCargoCount"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="@+id/aCargoCount" />
 
         <TextView
             android:id="@+id/aCargoCount"
             android:layout_width="80dp"
             android:layout_height="60dp"
+            android:layout_marginTop="75dp"
             android:gravity="center_horizontal|center_vertical"
             android:includeFontPadding="false"
             android:text="0"
             android:textSize="50sp"
-            app:layout_constraintBottom_toBottomOf="@+id/aMinusCargoButton"
+            app:layout_constraintEnd_toStartOf="@+id/aAddCargoButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/aMinusCargoButton"
-            app:layout_constraintTop_toTopOf="@+id/aMinusCargoButton"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="0" />
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="47dp"
-            android:gravity="center_horizontal"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:gravity="left"
             android:text="CARGO"
-            android:textSize="35sp"
-            app:layout_constraintBottom_toTopOf="@+id/aCargoCount"
-            app:layout_constraintEnd_toEndOf="@+id/aAddCargoButton"
-            app:layout_constraintStart_toStartOf="@+id/aMinusCargoButton" />
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@+id/aMinusCargoButton"
+            app:layout_constraintEnd_toStartOf="@+id/aMinusCargoButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/aMinusCargoButton" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"
@@ -210,66 +254,31 @@
             android:layout_marginTop="50dp"
             android:text="Start Teleop"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.487"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
-
-        <Spinner
-            android:id="@+id/startingPosition"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/textView8"
-            app:layout_constraintStart_toStartOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="85dp"
-            android:text="Staring Position"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline5"
-            app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/aDropCount" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
-            android:text="Preload"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintTop_toBottomOf="@+id/posi" />
 
         <TextView
             android:id="@+id/posi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:text="Movement"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/movement"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/preload" />
-
-        <Spinner
-            android:id="@+id/preload"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/textView10"
-            app:layout_constraintHorizontal_bias="0.483"
-            app:layout_constraintStart_toStartOf="@+id/textView10"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            app:layout_constraintTop_toBottomOf="@+id/aDropCount" />
 
         <Spinner
             android:id="@+id/movement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/posi"
-            app:layout_constraintStart_toStartOf="@+id/posi"
-            app:layout_constraintTop_toBottomOf="@+id/posi" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/posi"
+            app:layout_constraintTop_toTopOf="@+id/posi" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
