@@ -40,6 +40,7 @@ class AutonScoring : AppCompatActivity() {
 
         var data = intent.extras
         _matchResult = data?.getParcelable<MatchResult>("MatchResult")!!
+        setTitle("Team " + _matchResult.teamNumber.toString() + " - Auton Scoring")
 
         var minusCargoButton = findViewById<Button>(R.id.aMinusCargoButton)
         var addCargoButton = findViewById<Button>(R.id.aAddCargoButton)

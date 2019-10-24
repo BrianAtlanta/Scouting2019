@@ -29,6 +29,8 @@ class PostMatchScoring : AppCompatActivity() {
             intent.putExtra("NextMatch", _matchResult.matchNumber +1)
             startActivity(intent)
         }
+
+        setTitle("Team " + _matchResult.teamNumber.toString() + " - Post Match Scoring")
     }
 
 }

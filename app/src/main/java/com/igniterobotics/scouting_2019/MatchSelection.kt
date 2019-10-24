@@ -13,6 +13,7 @@ import android.view.View
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import com.igniterobotics.scouting_2019.BuildConfig.VERSION_NAME
 import com.igniterobotics.scouting_2019.Enums.Alliance
 import com.igniterobotics.scouting_2019.Enums.Movement
 import com.igniterobotics.scouting_2019.Enums.Preload
@@ -35,6 +36,7 @@ class MatchSelection : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_match_selection)
+        setTitle("GRITS 2019 Scouting - "  + VERSION_NAME)
 
         matchSchedule.add(Match(1, 832, 1102, 2974, 4910, 1746, 4026))
         matchSchedule.add(Match(2, 4188, 971, 254, 1481, 330, 271))

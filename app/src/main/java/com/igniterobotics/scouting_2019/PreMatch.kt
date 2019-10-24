@@ -69,6 +69,7 @@ class PreMatch : AppCompatActivity() {
             }
         }
 
+        setTitle("Team " + _matchResult.teamNumber.toString() + " - Pre-match")
 
         startAutonButton.setOnClickListener() {
             val intent = Intent(this, AutonScoring::class.java)

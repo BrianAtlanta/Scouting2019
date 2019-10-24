@@ -14,7 +14,9 @@ import com.igniterobotics.scouting_2019.Enums.Preload
 import com.igniterobotics.scouting_2019.Enums.StartingPosition
 import com.igniterobotics.scouting_2019.Models.AutonResult
 import com.igniterobotics.scouting_2019.Models.MatchResult
+import com.igniterobotics.scouting_2019.Models.DefensedPeriod
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.collections.mutableListOf
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,7 +33,9 @@ class MainActivity : AppCompatActivity() {
     private var _startOfTeleop: Long = 0
     private var _dStart: Long = 0
     private var _dStop: Long = 0
-    lateinit var _matchResult: MatchResult
+    private var _defensePeriod = DefensedPeriod(0,0)
+    private var _defenseList = ArrayList<DefensedPeriod>()
+    private lateinit var _matchResult: MatchResult
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,8 +52,8 @@ class MainActivity : AppCompatActivity() {
         var substractIntakeErrorButton = findViewById<Button>(R.id.substractIntakeError)
         var addDropButton = findViewById<Button>(R.id.addDropButton)
         var minusDropButton = findViewById<Button>(R.id.minusDropButton)
-      //  var defenseTimer = findViewById<Chronometer>(R.id.defenseTimer)
-       // var climbTimer = findViewById<Chronometer>(R.id.climbTimer)
+        var defenseTimer = findViewById<Chronometer>(R.id.defenseTimer)
+        var climbTimer = findViewById<Chronometer>(R.id.climbTimer)
         var defenseTimerButton = findViewById<Button>(R.id.defenseButton)
         var climbTimerButton = findViewById<Button>(R.id.climbTimerButton)
         var endTelopButton = findViewById<Button>(R.id.endTelopButton)
@@ -58,6 +62,8 @@ class MainActivity : AppCompatActivity() {
         var hatchCount = findViewById<TextView>(R.id.hatchCount)
         var intakeErrorCount = findViewById<TextView>(R.id.intakeError)
         var dropCount = findViewById<TextView>(R.id.dropCount)
+
+        setTitle("Team " + _matchResult.teamNumber.toString() + " - Teleop Scoring")
         //var defenseButton = findViewById<Button>(R.id.defenseTime)
 
 
@@ -72,30 +78,31 @@ class MainActivity : AppCompatActivity() {
             hatchCount.text = _hatchCount.toString()
             _startOfTeleop = System.currentTimeMillis()
 
-        /*
+
         defenseTimerButton.setOnClickListener() {
             if (!isDefenseTimerOn)
             {
-                _dStart = System.currentTimeMillis()
-
+                _defensePeriod = DefensedPeriod(System.currentTimeMillis(),0)
                 defenseTimer.setBase(SystemClock.elapsedRealtime() + timeWhenDefenseStopped)
                 defenseTimer.start();
                 isDefenseTimerOn = true;
-                defenseTimerButton.text = "Start " + ((_dStart - _startOfTeleop)).toString()
+                defenseTimerButton.text = "Stop Defense"
             }
             else
             {
-                _dStop = System.currentTimeMillis()
+                _defensePeriod.defenseStopped = System.currentTimeMillis()
+                _defenseList.add((_defensePeriod))
                 timeWhenDefenseStopped = defenseTimer.getBase() - SystemClock.elapsedRealtime();
                 defenseTimer.stop()
                 isDefenseTimerOn = false
-                defenseTimerButton.text = "Stop " + ((_dStop - _startOfTeleop)).toString()
+                defenseTimerButton.text = "Start Defense"
             }
         }
 
         climbTimerButton.setOnClickListener() {
             if (!isClimbTimerOn)
             {
+
                 climbTimer.setBase(SystemClock.elapsedRealtime() + timeWhenClimbStopped)
                 climbTimer.start();
                 isClimbTimerOn = true;
@@ -110,7 +117,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-         */
+
 
         minusCargoButton.setOnClickListener() {
             if (_cargoCount > 0)
