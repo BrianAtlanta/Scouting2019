@@ -26,10 +26,11 @@ class MatchSelection : AppCompatActivity() {
 
     var matchSchedule = arrayListOf<Match>()
     var scoutPositions = arrayOf("  Red 1  ", "  Red 2  ", "  Red 3  ", "  Blue 1  ", "  Blue 2  ", "  Blue 3  ")
-    var autonResult = AutonResult(0,0,0,0,StartingPosition.NotSet,Preload.NotSet,Movement.NotSet)
+    var preMatchResult = PreMatchResult(StartingPosition.NotSet,Preload.NotSet)
+    var autonResult = AutonResult(0,0,0,0,Movement.NotSet)
     var teleopResult = TeleopResult(0,0,0,0,false,false,false,false,false,0,0)
-    var postMatchResult = PostMatchResult(0,0,false,false,0,0,0,0,0,false,false,false)
-    var _matchResult = MatchResult(0,0,Alliance.Red, autonResult, teleopResult,postMatchResult)
+    var postMatchResult = PostMatchResult(0,0,false,false,false,false,false,false)
+    var _matchResult = MatchResult(0,0,Alliance.Red, preMatchResult, autonResult, teleopResult,postMatchResult)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

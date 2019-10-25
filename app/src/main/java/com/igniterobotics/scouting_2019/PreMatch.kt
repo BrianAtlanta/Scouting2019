@@ -83,17 +83,17 @@ class PreMatch : AppCompatActivity() {
         var positionSpinner = findViewById<Spinner>(R.id.prematchPosition)
 
         when (positionSpinner.selectedItemPosition) {
-            1 -> _matchResult.autonResult.startingPosision = StartingPosition.LevelOneNear
-            2 -> _matchResult.autonResult.startingPosision = StartingPosition.LevelOneMiddle
-            3 -> _matchResult.autonResult.startingPosision = StartingPosition.LevelOneFar
-            4 -> _matchResult.autonResult.startingPosision = StartingPosition.LevelTwoNear
-            5 -> _matchResult.autonResult.startingPosision = StartingPosition.LevelTwoFar
-            6 -> _matchResult.autonResult.startingPosision = StartingPosition.LevelThree
+            1 -> _matchResult.preMatchResult.startingPosision = StartingPosition.LevelOneNear
+            2 -> _matchResult.preMatchResult.startingPosision = StartingPosition.LevelOneMiddle
+            3 -> _matchResult.preMatchResult.startingPosision = StartingPosition.LevelOneFar
+            4 -> _matchResult.preMatchResult.startingPosision = StartingPosition.LevelTwoNear
+            5 -> _matchResult.preMatchResult.startingPosision = StartingPosition.LevelTwoFar
+            6 -> _matchResult.preMatchResult.startingPosision = StartingPosition.LevelThree
         }
 
         when (preload.selectedItemPosition) {
-            1 -> _matchResult.autonResult.preload = Preload.Cargo
-            2 -> _matchResult.autonResult.preload = Preload.Hatch
+            1 -> _matchResult.preMatchResult.preload = Preload.Cargo
+            2 -> _matchResult.preMatchResult.preload = Preload.Hatch
         }
     }
 }

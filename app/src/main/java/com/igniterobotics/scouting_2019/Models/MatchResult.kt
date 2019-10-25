@@ -11,6 +11,7 @@ data class MatchResult(
     var teamNumber: Int,
     var matchNumber: Int,
     var alliance: Alliance,
+    var preMatchResult: PreMatchResult,
     var autonResult: AutonResult,
     var telopResult: TeleopResult,
     var postMatchResult: PostMatchResult

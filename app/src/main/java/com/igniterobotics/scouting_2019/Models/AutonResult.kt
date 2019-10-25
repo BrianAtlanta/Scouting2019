@@ -12,7 +12,5 @@ data class AutonResult(
     var cargoCount: Int,
     var intakeDrop: Int,
     var itemDrops: Int,
-    var startingPosision: StartingPosition,
-    var preload: Preload,
     var movement: Movement
 ): Parcelable
