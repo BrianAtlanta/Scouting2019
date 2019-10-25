@@ -28,7 +28,7 @@ class MatchSelection : AppCompatActivity() {
     var scoutPositions = arrayOf("  Red 1  ", "  Red 2  ", "  Red 3  ", "  Blue 1  ", "  Blue 2  ", "  Blue 3  ")
     var preMatchResult = PreMatchResult(StartingPosition.NotSet,Preload.NotSet)
     var autonResult = AutonResult(0,0,0,0,Movement.NotSet)
-    var teleopResult = TeleopResult(0,0,0,0,false,false,false,false,false,0,0)
+    var teleopResult = TeleopResult(0,0,0,0,false,false,false,false,false,0,0, ArrayList<Double>(), ArrayList<Double>(), ArrayList<Double>(), ArrayList<Double>(), ArrayList<DefensedPeriod>())
     var postMatchResult = PostMatchResult(0,0,false,false,false,false,false,false)
     var _matchResult = MatchResult(0,0,Alliance.Red, preMatchResult, autonResult, teleopResult,postMatchResult)
 

@@ -2,6 +2,7 @@ package com.igniterobotics.scouting_2019.Models
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+import com.igniterobotics.scouting_2019.Models.DefensedPeriod
 
 @Parcelize
 data class TeleopResult (
@@ -15,7 +16,12 @@ data class TeleopResult (
     var level2Ability: Boolean,
     var level3Ability: Boolean,
     var climbTime: Int,
-    var totalDefenseTime: Int
+    var totalDefenseTime: Int,
+    var hatchTimestamps: ArrayList<Double>,
+    var cargoTimestamps: ArrayList<Double>,
+    var intakeDropTimestamps: ArrayList<Double>,
+    var dropTimestamps: ArrayList<Double>,
+    var defensePeriods: ArrayList<DefensedPeriod>
     /*,
     var defensePeriods: mutableListOf<defensedPeriod>(),
     var hatchScoringTime: mutableListOf<Int> = null

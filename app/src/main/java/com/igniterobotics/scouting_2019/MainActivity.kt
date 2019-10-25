@@ -16,7 +16,11 @@ import com.igniterobotics.scouting_2019.Models.AutonResult
 import com.igniterobotics.scouting_2019.Models.MatchResult
 import com.igniterobotics.scouting_2019.Models.DefensedPeriod
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.concurrent.TimeUnit
 import kotlin.collections.mutableListOf
+import java.math.BigDecimal
+import java.math.RoundingMode
+import kotlin.math.ceil
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,7 +37,11 @@ class MainActivity : AppCompatActivity() {
     private var _startOfTeleop: Long = 0
     private var _dStart: Long = 0
     private var _dStop: Long = 0
-    private var _defensePeriod = DefensedPeriod(0,0)
+    private var _defensePeriod = DefensedPeriod(0.0,0.0)
+    private var _cargoTimestamps = ArrayList<Double>()
+    private var _hatchTimestamps = ArrayList<Double>()
+    private var _intakeErrorTimestamps = ArrayList<Double>()
+    private var _dropTimestamps = ArrayList<Double>()
     private var _defenseList = ArrayList<DefensedPeriod>()
     private lateinit var _matchResult: MatchResult
 
@@ -82,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         defenseTimerButton.setOnClickListener() {
             if (!isDefenseTimerOn)
             {
-                _defensePeriod = DefensedPeriod(System.currentTimeMillis(),0)
+                _defensePeriod = DefensedPeriod(GetTimeStamp(),0.0)
                 defenseTimer.setBase(SystemClock.elapsedRealtime() + timeWhenDefenseStopped)
                 defenseTimer.start();
                 isDefenseTimerOn = true;
@@ -90,7 +98,7 @@ class MainActivity : AppCompatActivity() {
             }
             else
             {
-                _defensePeriod.defenseStopped = System.currentTimeMillis()
+                _defensePeriod.defenseStopped = GetTimeStamp()
                 _defenseList.add((_defensePeriod))
                 timeWhenDefenseStopped = defenseTimer.getBase() - SystemClock.elapsedRealtime();
                 defenseTimer.stop()
@@ -112,6 +120,7 @@ class MainActivity : AppCompatActivity() {
             {
                 timeWhenClimbStopped = climbTimer.getBase() - SystemClock.elapsedRealtime();
                 climbTimer.stop()
+                _matchResult.telopResult.climbTime = ceil(timeWhenClimbStopped / 1000.0).toInt()
                 isClimbTimerOn = false
                 climbTimerButton.text = "Start Climb"
             }
@@ -120,13 +129,14 @@ class MainActivity : AppCompatActivity() {
 
 
         minusCargoButton.setOnClickListener() {
-            if (_cargoCount > 0)
+            if (_cargoCount > 0) {
+                RemoveTimestamp(_cargoTimestamps)
                 _cargoCount--
+            }
             else
                 _cargoCount = 0
 
             cargoCount.text = _cargoCount.toString()
-            true
         }
 
         addCargoButton.setOnClickListener() {
@@ -134,18 +144,20 @@ class MainActivity : AppCompatActivity() {
                 _cargoCount = 1
             else
                 _cargoCount++
+            Log.d("TAG", "Cargo Add at Timestamp " + GetTimeStamp())
+            AddTimestamp(_cargoTimestamps)
             cargoCount.text = _cargoCount.toString()
-            true
         }
 
         minusHatchButton.setOnClickListener() {
 
-            if (_hatchCount > 0)
+            if (_hatchCount > 0) {
+                RemoveTimestamp(_hatchTimestamps)
                 _hatchCount--
+            }
             else
                 _hatchCount = 0
             hatchCount.text = _hatchCount.toString()
-            true
         }
 
         addHatchButton.setOnClickListener() {
@@ -153,17 +165,20 @@ class MainActivity : AppCompatActivity() {
                 _hatchCount = 1
             else
                 _hatchCount++
+            Log.d("TAG", "Hatch Add at Timestamp " + GetTimeStamp())
+            AddTimestamp(_hatchTimestamps)
             hatchCount.text = _hatchCount.toString()
-            true
         }
 
         substractIntakeErrorButton.setOnClickListener() {
-            if (_intakeDrop > 0)
+            if (_intakeDrop > 0) {
+                RemoveTimestamp(_intakeErrorTimestamps)
                 _intakeDrop--
+            }
             else
                 _intakeDrop = 0
             intakeErrorCount.text = _intakeDrop.toString()
-            true
+
         }
 
         addIntakeErrorButton.setOnClickListener() {
@@ -171,18 +186,22 @@ class MainActivity : AppCompatActivity() {
                 _intakeDrop = 1
             else
                 _intakeDrop++
+            Log.d("TAG", "Intake Error at Timestamp " + GetTimeStamp())
+            AddTimestamp(_intakeErrorTimestamps)
             intakeErrorCount.text = _intakeDrop.toString()
-            true
+
         }
 
         minusDropButton.setOnClickListener() {
 
-            if (_dropCount > 0)
+            if (_dropCount > 0) {
+                RemoveTimestamp(_dropTimestamps)
                 _dropCount--
+            }
             else
                 _dropCount = 0
             dropCount.text = _dropCount.toString()
-            true
+
         }
 
         addDropButton.setOnClickListener() {
@@ -190,8 +209,9 @@ class MainActivity : AppCompatActivity() {
                 _dropCount = 1
             else
                 _dropCount++
+            Log.d("TAG", "Item Drop at Timestamp " + GetTimeStamp())
+            AddTimestamp(_dropTimestamps)
             dropCount.text = _dropCount.toString()
-            true
         }
 
         endTelopButton.setOnClickListener(){
@@ -216,6 +236,11 @@ class MainActivity : AppCompatActivity() {
             else
                 _matchResult.autonResult.itemDrops = _intakeDrop
 
+            _matchResult.telopResult.cargoTimestamps = _cargoTimestamps
+            _matchResult.telopResult.hatchTimestamps = _hatchTimestamps
+            _matchResult.telopResult.intakeDropTimestamps = _intakeErrorTimestamps
+            _matchResult.telopResult.dropTimestamps = _dropTimestamps
+            _matchResult.telopResult.defensePeriods = _defenseList
             val intent = Intent(this, PostMatchScoring::class.java)
             intent.putExtra("MatchResult", _matchResult)
             startActivity(intent)
@@ -223,4 +248,21 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun AddTimestamp(list: ArrayList<Double>)
+    {
+        list.add(GetTimeStamp())
+    }
+
+    fun RemoveTimestamp(list: ArrayList<Double>)
+    {
+        if (list.size > 0)
+            list.removeAt(list.size - 1)
+    }
+
+    fun GetTimeStamp(): Double {
+        //val decimal = BigDecimal(System.currentTimeMillis() -_startOfTeleop)/1000):ouble.setScale(2, RoundingMode.HALF_EVEN)
+        var totalMs = 135000 - (System.currentTimeMillis() -_startOfTeleop)
+        var timestampDouble = totalMs / 1000.0
+        return timestampDouble
+    }
 }
