@@ -120,17 +120,7 @@ class MatchSelection : AppCompatActivity() {
             }
         }
 
-        var data = intent.extras
-        var nextMatch = 1
-        if (data != null) {
-            if (data.get("NextMatch") != null)
-                nextMatch = data.get("NextMach") as Int
-        }
 
-        if (nextMatch > 0 && nextMatch <= matches.count())
-        {
-            matchSpinner.setSelection( nextMatch - 1)
-        }
 
         startPreMatch.setOnClickListener() {
             val intent = Intent(this, PreMatch::class.java)
