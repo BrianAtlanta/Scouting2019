@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         var defenseTimerButton = findViewById<Button>(R.id.defenseButton)
         var climbTimerButton = findViewById<Button>(R.id.climbTimerButton)
         var endTelopButton = findViewById<Button>(R.id.endTelopButton)
+        var cancelButton = findViewById<Button>(R.id.cancelTelop)
 
         var cargoCount = findViewById<TextView>(R.id.cargoCount)
         var hatchCount = findViewById<TextView>(R.id.hatchCount)
@@ -86,6 +87,11 @@ class MainActivity : AppCompatActivity() {
             hatchCount.text = _hatchCount.toString()
             _startOfTeleop = System.currentTimeMillis()
 
+
+        cancelButton.setOnClickListener(){
+            val intent = Intent(this, MatchSelection::class.java)
+            startActivity(intent)
+        }
 
         defenseTimerButton.setOnClickListener() {
             if (!isDefenseTimerOn)
@@ -245,6 +251,11 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("MatchResult", _matchResult)
             startActivity(intent)
         }
+
+    }
+
+    override fun onBackPressed() {
+        true
 
     }
 

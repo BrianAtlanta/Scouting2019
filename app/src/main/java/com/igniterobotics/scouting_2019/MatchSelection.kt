@@ -2,17 +2,15 @@ package com.igniterobotics.scouting_2019
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
-
-import android.widget.Spinner
-
-import android.widget.AdapterView
-import android.view.View
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.TextView
+import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.FirebaseFirestore
 import com.igniterobotics.scouting_2019.BuildConfig.VERSION_NAME
 import com.igniterobotics.scouting_2019.Enums.Alliance
 import com.igniterobotics.scouting_2019.Enums.Movement
@@ -20,6 +18,7 @@ import com.igniterobotics.scouting_2019.Enums.Preload
 import com.igniterobotics.scouting_2019.Enums.StartingPosition
 import com.igniterobotics.scouting_2019.Models.*
 import kotlinx.android.synthetic.main.activity_match_selection.*
+import java.net.URL
 
 
 class MatchSelection : AppCompatActivity() {
@@ -28,16 +27,48 @@ class MatchSelection : AppCompatActivity() {
     var scoutPositions = arrayOf("  Red 1  ", "  Red 2  ", "  Red 3  ", "  Blue 1  ", "  Blue 2  ", "  Blue 3  ")
     var preMatchResult = PreMatchResult(StartingPosition.NotSet,Preload.NotSet)
     var autonResult = AutonResult(0,0,0,0,Movement.NotSet)
-    var teleopResult = TeleopResult(0,0,0,0,false,false,false,false,false,0,0, ArrayList<Double>(), ArrayList<Double>(), ArrayList<Double>(), ArrayList<Double>(), ArrayList<DefensedPeriod>())
-    var postMatchResult = PostMatchResult(0,0,false,false,false,false,false,false)
+    var teleopResult = TeleopResult(0,0,0,0,0,0, ArrayList<Double>(), ArrayList<Double>(), ArrayList<Double>(), ArrayList<Double>(), ArrayList<DefensedPeriod>())
+    var postMatchResult = PostMatchResult(0,0,false,false,false,false,false,false, false, false)
     var _matchResult = MatchResult(0,0,Alliance.Red, preMatchResult, autonResult, teleopResult,postMatchResult)
+    var _autonResults= arrayListOf<AutonResult>()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        /*
+        _autonResults.add(AutonResult(4,2,2,0,Movement.Crossed))
+        _autonResults.add(AutonResult(2,5,1,1,Movement.Crossed))
+        _autonResults.add(AutonResult(5,0,0,2,Movement.Crossed))
+        _autonResults.add(AutonResult(0,8,2,0,Movement.Crossed))
+        _autonResults.add(AutonResult(0,10,0,0,Movement.Crossed))
+
+
+
+
+
+        var maxHatch = 0
+        var minHatch = 0
+        var avgHatch = 0
+        var hatchMatchCnt = 0
+
+        var hatchMatches = _autonResults.filter { it.hatchCount > 0 }
+        if (hatchMatches.count() > 0) {
+            hatchMatchCnt = hatchMatches.count()
+            maxHatch = (hatchMatches.maxBy { it.hatchCount })?.hatchCount as Int
+            minHatch = (hatchMatches.minBy { it.hatchCount })?.hatchCount as Int
+            var avgHatch = _autonResults.sumBy { it.hatchCount } / (hatchMatchCnt * 1.0)
+        }
+        Log.w("TAG", "################ Cnt : " + hatchMatchCnt + "  Max Hatch : " + maxHatch.toString() + "  Min Hatch : " + minHatch + "   Avg Hatch :" + avgHatch)
+
+
+         */
+
+
         setContentView(R.layout.activity_match_selection)
         setTitle("GRITS 2019 Scouting - "  + VERSION_NAME)
+
 
         matchSchedule.add(Match(1, 832, 1102, 2974, 4910, 1746, 4026))
         matchSchedule.add(Match(2, 4188, 971, 254, 1481, 330, 271))
@@ -90,7 +121,12 @@ class MatchSelection : AppCompatActivity() {
         }
 
         var data = intent.extras
-        var nextMatch = (if (data != null) data.get("NextMatch") else 1) as Int
+        var nextMatch = 1
+        if (data != null) {
+            if (data.get("NextMatch") != null)
+                nextMatch = data.get("NextMach") as Int
+        }
+
         if (nextMatch > 0 && nextMatch <= matches.count())
         {
             matchSpinner.setSelection( nextMatch - 1)
@@ -102,6 +138,10 @@ class MatchSelection : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+    }
+    override fun onBackPressed() {
+        true
 
     }
     fun UpdateTeamNumber(){

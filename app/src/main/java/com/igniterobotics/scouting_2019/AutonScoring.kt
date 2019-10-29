@@ -51,6 +51,7 @@ class AutonScoring : AppCompatActivity() {
         var addDropButton = findViewById<Button>(R.id.aDropButton)
         var minusDropButton = findViewById<Button>(R.id.aMinusDropButton)
         var startTelopButton = findViewById<Button>(R.id.StartTeleopButton)
+        var cancelButton = findViewById<Button>(R.id.cancelAuton)
 
         var cargoCount = findViewById<TextView>(R.id.aCargoCount)
         var hatchCount = findViewById<TextView>(R.id.aHatchCount)
@@ -170,6 +171,11 @@ class AutonScoring : AppCompatActivity() {
             startActivity(intent)
         }
 
+        cancelButton.setOnClickListener(){
+            val intent = Intent(this, MatchSelection::class.java)
+            startActivity(intent)
+        }
+
     }
 
     fun GetAutonResult(){
@@ -201,13 +207,7 @@ class AutonScoring : AppCompatActivity() {
 
     override fun onBackPressed() {
         true
-/*        if (!shouldAllowBack()) {
-            doSomething()
-        } else {
-            super.onBackPressed()
-        }
 
- */
     }
 
 }

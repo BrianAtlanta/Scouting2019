@@ -181,6 +181,16 @@
             app:layout_constraintStart_toEndOf="@+id/rocketRp"
             app:layout_constraintTop_toTopOf="@+id/rocketRp" />
 
+        <Button
+            android:id="@+id/cancelPostMatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:text="Cancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/submitScoresButton" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

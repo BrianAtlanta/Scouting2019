@@ -9,6 +9,9 @@ import android.widget.RadioGroup
 import android.widget.RadioButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.FirebaseFirestore
+import com.igniterobotics.scouting_2019.Enums.Movement
+import com.igniterobotics.scouting_2019.Models.AutonResult
 import com.igniterobotics.scouting_2019.Models.MatchResult
 
 import kotlinx.android.synthetic.main.activity_post_match_scoring.*
@@ -26,16 +29,41 @@ class PostMatchScoring : AppCompatActivity() {
         _matchResult = data?.getParcelable<MatchResult>("MatchResult")!!
 
         var submitScoresButton = findViewById<Button>(R.id.submitScoresButton)
+        var cancelButton = findViewById<Button>(R.id.cancelPostMatch)
+
+        cancelButton.setOnClickListener(){
+            val intent = Intent(this, MatchSelection::class.java)
+            startActivity(intent)
+        }
         submitScoresButton.setOnClickListener(){
 
 
             populatePostMatchResults()
             displayResults()
-            /*val intent = Intent(this, MatchSelection::class.java)
+
+
+            val db = FirebaseFirestore.getInstance()
+
+            val item = mapOf(
+                "match" to _matchResult.matchNumber,
+                "team" to _matchResult.teamNumber,
+                "data" to _matchResult
+            )
+
+
+            db.collection("matches")
+                .add(item)
+                .addOnSuccessListener { doc ->
+                    Log.d("TAG","Add success: ${doc.id}")
+                }
+                .addOnFailureListener { e ->
+                    Log.w("Add fail", e)
+                }
+
+            val intent = Intent(this, MatchSelection::class.java)
             intent.putExtra("NextMatch", _matchResult.matchNumber +1)
             startActivity(intent)
 
-             */
         }
 
         setTitle("Team " + _matchResult.teamNumber.toString() + " - Post Match Scoring")
@@ -121,6 +149,11 @@ class PostMatchScoring : AppCompatActivity() {
         Log.d("TAG", "Yellow Card : " + _matchResult.postMatchResult.yellowCard.toString())
         Log.d("TAG", "Rocket RP : " + _matchResult.postMatchResult.rocketRp.toString())
         Log.d("TAG", "Hab RP : " + _matchResult.postMatchResult.habRp.toString())
+
+    }
+
+    override fun onBackPressed() {
+        true
 
     }
 

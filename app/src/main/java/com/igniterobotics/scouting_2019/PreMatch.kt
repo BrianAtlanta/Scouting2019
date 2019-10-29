@@ -29,6 +29,7 @@ class PreMatch : AppCompatActivity() {
 
 
         var startAutonButton = findViewById<Button>(R.id.startAutonButton)
+        var cancelMatchButton = findViewById<Button>(R.id.cancelPreMatchButton)
 
         var positionSpinner = findViewById<Spinner>(R.id.prematchPosition)
         val positionAdapter = ArrayAdapter(this, R.layout.ignite_spinner, startPositionOptions)
@@ -76,6 +77,16 @@ class PreMatch : AppCompatActivity() {
            intent.putExtra("MatchResult", _matchResult)
            startActivity(intent)
         }
+
+        cancelMatchButton.setOnClickListener() {
+            val intent = Intent(this, MatchSelection::class.java)
+            startActivity(intent)
+        }
+
+    }
+    override fun onBackPressed() {
+        true
+
     }
 
     fun updateMatchResults(){

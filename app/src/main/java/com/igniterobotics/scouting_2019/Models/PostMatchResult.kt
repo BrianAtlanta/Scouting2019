@@ -11,5 +11,7 @@ class PostMatchResult(
     var rocketLevel3: Boolean,
     var yellowCard: Boolean,
     var redCard: Boolean,
+    var died: Boolean,
+    var broken: Boolean,
     var rocketRp: Boolean,
     var habRp: Boolean): Parcelable

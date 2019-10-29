@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "77172118423",
+    "firebase_url": "https://ignite-grits-2019.firebaseio.com",
+    "project_id": "ignite-grits-2019",
+    "storage_bucket": "ignite-grits-2019.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77172118423:android:cd31868098a0d7323bead2",
+        "android_client_info": {
+          "package_name": "com.igniterobotics.scouting_2019"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77172118423-oudlg6n4o98d0mqb82id7am718cdaipe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAB28RYuvHEhtEQWQBqI7uJVHq76BTElcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77172118423-oudlg6n4o98d0mqb82id7am718cdaipe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -10,11 +10,6 @@ data class TeleopResult (
     var cargoCount: Int,
     var intakeDrops: Int,
     var drops: Int,
-    var died: Boolean,
-    var broken: Boolean,
-    var disabled: Boolean,
-    var level2Ability: Boolean,
-    var level3Ability: Boolean,
     var climbTime: Int,
     var totalDefenseTime: Int,
     var hatchTimestamps: ArrayList<Double>,
@@ -22,9 +17,4 @@ data class TeleopResult (
     var intakeDropTimestamps: ArrayList<Double>,
     var dropTimestamps: ArrayList<Double>,
     var defensePeriods: ArrayList<DefensedPeriod>
-    /*,
-    var defensePeriods: mutableListOf<defensedPeriod>(),
-    var hatchScoringTime: mutableListOf<Int> = null
-
-     */
 ): Parcelable
