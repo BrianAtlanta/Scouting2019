@@ -66,7 +66,8 @@ class PostMatchScoring : AppCompatActivity() {
 
 
             val intent = Intent(this, MatchSelection::class.java)
-            intent.putExtra("NextMatch", _matchResult.matchNumber +1)
+            // removed autoinccrement match number
+            // intent.putExtra("NextMatch", _matchResult.matchNumber +1)
             startActivity(intent)
 
         }
