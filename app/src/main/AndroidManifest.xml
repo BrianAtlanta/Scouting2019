@@ -9,35 +9,41 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MatchSelection"
+        <activity android:name=".MatchPreview"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".MatchPreviewSelection"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".MatchSelection"
             android:noHistory="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:noHistory="true"
             android:name=".PostMatchScoring"
             android:label="@string/title_activity_post_match_scoring"
+            android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:noHistory="true"
             android:name=".AutonScoring"
             android:label="Auton Scoring"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
             android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:label="Teleop Scoring"
-            android:screenOrientation="portrait" />
-        <activity android:name=".PreMatch"
             android:noHistory="true"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PreMatch"
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

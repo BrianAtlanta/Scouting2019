@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MatchPreview">
+
+        <TextView
+            android:id="@+id/r1MinClimb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView35"
+            app:layout_constraintEnd_toEndOf="@+id/r1MaxClimb"
+            app:layout_constraintStart_toStartOf="@+id/r1MaxClimb"
+            app:layout_constraintTop_toTopOf="@+id/textView35" />
+
+        <TextView
+            android:id="@+id/r3MinClimb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r2MinClimb"
+            app:layout_constraintEnd_toEndOf="@+id/r1MaxClimb3"
+            app:layout_constraintStart_toStartOf="@+id/r1MaxClimb3"
+            app:layout_constraintTop_toTopOf="@+id/r2MinClimb" />
+
+        <TextView
+            android:id="@+id/r2MinClimb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r1MinClimb"
+            app:layout_constraintEnd_toEndOf="@+id/r1MaxClimb2"
+            app:layout_constraintStart_toStartOf="@+id/r1MaxClimb2"
+            app:layout_constraintTop_toTopOf="@+id/r1MinClimb" />
+
+        <TextView
+            android:id="@+id/red1Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="40dp"
+            android:text="0000"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/textView18"
+            app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+        <TextView
+            android:id="@+id/red3Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="0000"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/red2Label"
+            app:layout_constraintStart_toEndOf="@+id/red2Label"
+            app:layout_constraintTop_toTopOf="@+id/red2Label" />
+
+        <TextView
+            android:id="@+id/red2Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="0000"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/red1Label"
+            app:layout_constraintStart_toEndOf="@+id/red1Label"
+            app:layout_constraintTop_toTopOf="@+id/red1Label" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Avg Score"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/textView18"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="Matches"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/red1Label" />
+
+        <TextView
+            android:id="@+id/r2Matches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r1Matches"
+            app:layout_constraintEnd_toEndOf="@+id/red2Label"
+            app:layout_constraintStart_toStartOf="@+id/red2Label"
+            app:layout_constraintTop_toTopOf="@+id/r1Matches" />
+
+        <TextView
+            android:id="@+id/r3Matches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r2Matches"
+            app:layout_constraintEnd_toEndOf="@+id/red3Label"
+            app:layout_constraintStart_toStartOf="@+id/red3Label"
+            app:layout_constraintTop_toTopOf="@+id/r2Matches" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Avg Cycles"
+            app:layout_constraintStart_toStartOf="@+id/textView18"
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Max Cycles"
+            app:layout_constraintStart_toStartOf="@+id/textView19"
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Min Cycles"
+            app:layout_constraintStart_toStartOf="@+id/textView21"
+            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Avg Cargo"
+            app:layout_constraintStart_toStartOf="@+id/textView22"
+            app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Max Cargo"
+            app:layout_constraintStart_toStartOf="@+id/textView23"
+            app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Avg Hatches"
+            app:layout_constraintStart_toStartOf="@+id/textView24"
+            app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Max Hatches"
+            app:layout_constraintStart_toStartOf="@+id/textView25"
+            app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Avg Score"
+            app:layout_constraintStart_toStartOf="@+id/textView26"
+            app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Max Score"
+            app:layout_constraintStart_toStartOf="@+id/textView27"
+            app:layout_constraintTop_toBottomOf="@+id/textView27" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Min Score"
+            app:layout_constraintStart_toStartOf="@+id/textView28"
+            app:layout_constraintTop_toBottomOf="@+id/textView28" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Hab 1"
+            app:layout_constraintStart_toStartOf="@+id/textView29"
+            app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Hab 2"
+            app:layout_constraintStart_toStartOf="@+id/textView30"
+            app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Hab 3"
+            app:layout_constraintStart_toStartOf="@+id/textView31"
+            app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Avg Climb"
+            app:layout_constraintStart_toStartOf="@+id/textView32"
+            app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Max Climb"
+            app:layout_constraintStart_toStartOf="@+id/textView33"
+            app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Min Climb"
+            app:layout_constraintStart_toStartOf="@+id/textView34"
+            app:layout_constraintTop_toBottomOf="@+id/textView34" />
+
+        <TextView
+            android:id="@+id/r1Matches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView18"
+            app:layout_constraintEnd_toEndOf="@+id/red1Label"
+            app:layout_constraintStart_toStartOf="@+id/red1Label"
+            app:layout_constraintTop_toTopOf="@+id/textView18" />
+
+        <TextView
+            android:id="@+id/r1AvgCycles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView19"
+            app:layout_constraintEnd_toEndOf="@+id/r1Matches"
+            app:layout_constraintStart_toStartOf="@+id/r1Matches"
+            app:layout_constraintTop_toTopOf="@+id/textView19" />
+
+        <TextView
+            android:id="@+id/r2AvgCycles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r1AvgCycles"
+            app:layout_constraintEnd_toEndOf="@+id/r2Matches"
+            app:layout_constraintStart_toStartOf="@+id/r2Matches"
+            app:layout_constraintTop_toTopOf="@+id/r1AvgCycles" />
+
+        <TextView
+            android:id="@+id/r3AvgCycles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r2AvgCycles"
+            app:layout_constraintEnd_toEndOf="@+id/r3Matches"
+            app:layout_constraintStart_toStartOf="@+id/r3Matches"
+            app:layout_constraintTop_toTopOf="@+id/r2AvgCycles" />
+
+        <TextView
+            android:id="@+id/r1MaxCycles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView21"
+            app:layout_constraintEnd_toEndOf="@+id/r1AvgCycles"
+            app:layout_constraintStart_toStartOf="@+id/r1AvgCycles"
+            app:layout_constraintTop_toTopOf="@+id/textView21" />
+
+        <TextView
+            android:id="@+id/r2MaxCycles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r1MaxCycles"
+            app:layout_constraintEnd_toEndOf="@+id/r2AvgCycles"
+            app:layout_constraintStart_toStartOf="@+id/r2AvgCycles"
+            app:layout_constraintTop_toTopOf="@+id/r1MaxCycles" />
+
+        <TextView
+            android:id="@+id/r3MaxCycles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r2MaxCycles"
+            app:layout_constraintEnd_toEndOf="@+id/r3AvgCycles"
+            app:layout_constraintStart_toStartOf="@+id/r3AvgCycles"
+            app:layout_constraintTop_toTopOf="@+id/r2MaxCycles" />
+
+        <TextView
+            android:id="@+id/r1MinCycles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView22"
+            app:layout_constraintEnd_toEndOf="@+id/r1MaxCycles"
+            app:layout_constraintStart_toStartOf="@+id/r1MaxCycles"
+            app:layout_constraintTop_toTopOf="@+id/textView22" />
+
+        <TextView
+            android:id="@+id/r1AvgCargo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView23"
+            app:layout_constraintEnd_toEndOf="@+id/r1MinCycles"
+            app:layout_constraintStart_toStartOf="@+id/r1MinCycles"
+            app:layout_constraintTop_toTopOf="@+id/textView23" />
+
+        <TextView
+            android:id="@+id/r3AvgCargo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/r3MinCycles"
+            app:layout_constraintStart_toStartOf="@+id/r3MinCycles"
+            app:layout_constraintTop_toTopOf="@+id/r2AvgCargo" />
+
+        <TextView
+            android:id="@+id/r1MaxCargo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView24"
+            app:layout_constraintEnd_toEndOf="@+id/r1AvgCargo"
+            app:layout_constraintStart_toStartOf="@+id/r1AvgCargo" />
+
+        <TextView
+            android:id="@+id/r1AvgHatches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView25"
+            app:layout_constraintEnd_toEndOf="@+id/r1MaxCargo"
+            app:layout_constraintStart_toStartOf="@+id/r1MaxCargo"
+            app:layout_constraintTop_toTopOf="@+id/textView25" />
+
+        <TextView
+            android:id="@+id/r1MaxHatches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView26"
+            app:layout_constraintEnd_toEndOf="@+id/r1AvgHatches"
+            app:layout_constraintStart_toStartOf="@+id/r1AvgHatches"
+            app:layout_constraintTop_toTopOf="@+id/textView26" />
+
+        <TextView
+            android:id="@+id/r1AvgScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView27"
+            app:layout_constraintEnd_toEndOf="@+id/r1MaxHatches"
+            app:layout_constraintStart_toStartOf="@+id/r1MaxHatches"
+            app:layout_constraintTop_toTopOf="@+id/textView27" />
+
+        <TextView
+            android:id="@+id/r1MaxScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView28"
+            app:layout_constraintEnd_toEndOf="@+id/r1AvgScore"
+            app:layout_constraintStart_toStartOf="@+id/r1AvgScore"
+            app:layout_constraintTop_toTopOf="@+id/textView28" />
+
+        <TextView
+            android:id="@+id/r1MinScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView29"
+            app:layout_constraintEnd_toEndOf="@+id/r1MaxScore"
+            app:layout_constraintStart_toStartOf="@+id/r1MaxScore"
+            app:layout_constraintTop_toTopOf="@+id/textView29" />
+
+        <TextView
+            android:id="@+id/r1Hab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView30"
+            app:layout_constraintEnd_toEndOf="@+id/r1MinScore"
+            app:layout_constraintStart_toStartOf="@+id/r1MinScore"
+            app:layout_constraintTop_toTopOf="@+id/textView30" />
+
+        <TextView
+            android:id="@+id/r1Hab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView31"
+            app:layout_constraintEnd_toEndOf="@+id/r1Hab1"
+            app:layout_constraintStart_toStartOf="@+id/r1Hab1"
+            app:layout_constraintTop_toTopOf="@+id/textView31" />
+
+        <TextView
+            android:id="@+id/r1Hab3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView32"
+            app:layout_constraintEnd_toEndOf="@+id/r1Hab2"
+            app:layout_constraintStart_toStartOf="@+id/r1Hab2"
+            app:layout_constraintTop_toTopOf="@+id/textView32" />
+
+        <TextView
+            android:id="@+id/r1AvgClimb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView33"
+            app:layout_constraintEnd_toEndOf="@+id/r1Hab3"
+            app:layout_constraintStart_toStartOf="@+id/r1Hab3"
+            app:layout_constraintTop_toTopOf="@+id/textView33" />
+
+        <TextView
+            android:id="@+id/r1MaxClimb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView34"
+            app:layout_constraintEnd_toEndOf="@+id/r1AvgClimb"
+            app:layout_constraintStart_toStartOf="@+id/r1AvgClimb"
+            app:layout_constraintTop_toTopOf="@+id/textView34" />
+
+        <TextView
+            android:id="@+id/r1MaxClimb2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r1MaxClimb"
+            app:layout_constraintEnd_toEndOf="@+id/r2AvgClimb"
+            app:layout_constraintStart_toStartOf="@+id/r2AvgClimb"
+            app:layout_constraintTop_toTopOf="@+id/r1MaxClimb" />
+
+        <TextView
+            android:id="@+id/r1MaxClimb3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r1MaxClimb2"
+            app:layout_constraintEnd_toEndOf="@+id/r3AvgClimb"
+            app:layout_constraintStart_toStartOf="@+id/r3AvgClimb"
+            app:layout_constraintTop_toTopOf="@+id/r1MaxClimb2" />
+
+        <TextView
+            android:id="@+id/r2AvgClimb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r1AvgClimb"
+            app:layout_constraintEnd_toEndOf="@+id/r2Hab3"
+            app:layout_constraintStart_toStartOf="@+id/r2Hab3"
+            app:layout_constraintTop_toTopOf="@+id/r1AvgClimb" />
+
+        <TextView
+            android:id="@+id/r3AvgClimb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r2AvgClimb"
+            app:layout_constraintEnd_toEndOf="@+id/r3Hab3"
+            app:layout_constraintStart_toStartOf="@+id/r3Hab3"
+            app:layout_constraintTop_toTopOf="@+id/r2AvgClimb" />
+
+        <TextView
+            android:id="@+id/r2Hab3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r1Hab3"
+            app:layout_constraintEnd_toEndOf="@+id/r2Hab2"
+            app:layout_constraintStart_toStartOf="@+id/r2Hab2"
+            app:layout_constraintTop_toTopOf="@+id/r1Hab3" />
+
+        <TextView
+            android:id="@+id/r3Hab3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r2Hab3"
+            app:layout_constraintEnd_toEndOf="@+id/r3Hab2"
+            app:layout_constraintStart_toStartOf="@+id/r3Hab2"
+            app:layout_constraintTop_toTopOf="@+id/r2Hab3" />
+
+        <TextView
+            android:id="@+id/r2Hab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r1Hab2"
+            app:layout_constraintEnd_toEndOf="@+id/r2Hab1"
+            app:layout_constraintStart_toStartOf="@+id/r2Hab1"
+            app:layout_constraintTop_toTopOf="@+id/r1Hab2" />
+
+        <TextView
+            android:id="@+id/r3Hab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r2Hab2"
+            app:layout_constraintEnd_toEndOf="@+id/r3Hab1"
+            app:layout_constraintStart_toStartOf="@+id/r3Hab1"
+            app:layout_constraintTop_toTopOf="@+id/r2Hab2" />
+
+        <TextView
+            android:id="@+id/r2Hab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r1Hab1"
+            app:layout_constraintEnd_toEndOf="@+id/r2MinScore"
+            app:layout_constraintStart_toStartOf="@+id/r2MinScore"
+            app:layout_constraintTop_toTopOf="@+id/r1Hab1" />
+
+        <TextView
+            android:id="@+id/r3Hab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r2Hab1"
+            app:layout_constraintEnd_toEndOf="@+id/r3MinScore"
+            app:layout_constraintStart_toStartOf="@+id/r3MinScore"
+            app:layout_constraintTop_toTopOf="@+id/r2Hab1" />
+
+        <TextView
+            android:id="@+id/r2MinScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r1MinScore"
+            app:layout_constraintEnd_toEndOf="@+id/r2MaxScore"
+            app:layout_constraintStart_toStartOf="@+id/r2MaxScore"
+            app:layout_constraintTop_toTopOf="@+id/r1MinScore" />
+
+        <TextView
+            android:id="@+id/r3MinScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r2MinScore"
+            app:layout_constraintEnd_toEndOf="@+id/r3MaxScore"
+            app:layout_constraintStart_toStartOf="@+id/r3MaxScore"
+            app:layout_constraintTop_toTopOf="@+id/r2MinScore" />
+
+        <TextView
+            android:id="@+id/r2MaxScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r1MaxScore"
+            app:layout_constraintEnd_toEndOf="@+id/r2AvgScore"
+            app:layout_constraintStart_toStartOf="@+id/r2AvgScore"
+            app:layout_constraintTop_toTopOf="@+id/r1MaxScore" />
+
+        <TextView
+            android:id="@+id/r3MaxScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r2MaxScore"
+            app:layout_constraintEnd_toEndOf="@+id/r3AvgScore"
+            app:layout_constraintStart_toStartOf="@+id/r3AvgScore"
+            app:layout_constraintTop_toTopOf="@+id/r2MaxScore" />
+
+        <TextView
+            android:id="@+id/r2AvgScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/r2MaxHatches"
+            app:layout_constraintStart_toStartOf="@+id/r2MaxHatches"
+            app:layout_constraintTop_toTopOf="@+id/r1AvgScore" />
+
+        <TextView
+            android:id="@+id/r3AvgScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/r3MaxHatches"
+            app:layout_constraintStart_toStartOf="@+id/r3MaxHatches"
+            app:layout_constraintTop_toTopOf="@+id/r2AvgScore" />
+
+        <TextView
+            android:id="@+id/r2MaxHatches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r1MaxHatches"
+            app:layout_constraintEnd_toEndOf="@+id/r2AvgHatches"
+            app:layout_constraintStart_toStartOf="@+id/r2AvgHatches"
+            app:layout_constraintTop_toTopOf="@+id/r1MaxHatches" />
+
+        <TextView
+            android:id="@+id/r3MaxHatches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r2MaxHatches"
+            app:layout_constraintEnd_toEndOf="@+id/r3AvgHatches"
+            app:layout_constraintStart_toStartOf="@+id/r3AvgHatches"
+            app:layout_constraintTop_toTopOf="@+id/r2MaxHatches" />
+
+        <TextView
+            android:id="@+id/r2AvgHatches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r1AvgHatches"
+            app:layout_constraintEnd_toEndOf="@+id/r2MaxCargo"
+            app:layout_constraintStart_toStartOf="@+id/r2MaxCargo"
+            app:layout_constraintTop_toTopOf="@+id/r1AvgHatches" />
+
+        <TextView
+            android:id="@+id/r3AvgHatches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r2AvgHatches"
+            app:layout_constraintEnd_toEndOf="@+id/r3MaxCargo"
+            app:layout_constraintStart_toStartOf="@+id/r3MaxCargo"
+            app:layout_constraintTop_toTopOf="@+id/r2AvgHatches" />
+
+        <TextView
+            android:id="@+id/r2MaxCargo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r1MaxCargo"
+            app:layout_constraintEnd_toEndOf="@+id/r2AvgCargo"
+            app:layout_constraintStart_toStartOf="@+id/r2AvgCargo"
+            app:layout_constraintTop_toTopOf="@+id/r1MaxCargo" />
+
+        <TextView
+            android:id="@+id/r3MaxCargo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r2MaxCargo"
+            app:layout_constraintEnd_toEndOf="@+id/r3AvgCargo"
+            app:layout_constraintStart_toStartOf="@+id/r3AvgCargo"
+            app:layout_constraintTop_toTopOf="@+id/r2MaxCargo" />
+
+        <TextView
+            android:id="@+id/r2AvgCargo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/r2MinCycles"
+            app:layout_constraintStart_toStartOf="@+id/r2MinCycles"
+            app:layout_constraintTop_toTopOf="@+id/r1AvgCargo" />
+
+        <TextView
+            android:id="@+id/r2MinCycles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r1MinCycles"
+            app:layout_constraintEnd_toEndOf="@+id/r2MaxCycles"
+            app:layout_constraintStart_toStartOf="@+id/r2MaxCycles"
+            app:layout_constraintTop_toTopOf="@+id/r1MinCycles" />
+
+        <TextView
+            android:id="@+id/r3MinCycles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/r2MinCycles"
+            app:layout_constraintEnd_toEndOf="@+id/r3MaxCycles"
+            app:layout_constraintStart_toStartOf="@+id/r3MaxCycles"
+            app:layout_constraintTop_toTopOf="@+id/r2MinCycles" />
+
+        <TextView
+            android:id="@+id/redAvgScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:text="0.0"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView17"
+            app:layout_constraintStart_toEndOf="@+id/textView17"
+            app:layout_constraintTop_toTopOf="@+id/textView17" />
+
+        <TextView
+            android:id="@+id/blueAvgScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="0.0"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@+id/redAvgScore"
+            app:layout_constraintStart_toEndOf="@+id/redAvgScore"
+            app:layout_constraintTop_toTopOf="@+id/redAvgScore" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

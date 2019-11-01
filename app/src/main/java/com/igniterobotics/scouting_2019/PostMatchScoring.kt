@@ -9,12 +9,16 @@ import android.widget.RadioGroup
 import android.widget.RadioButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import com.beust.klaxon.Klaxon
 import com.google.firebase.firestore.FirebaseFirestore
 import com.igniterobotics.scouting_2019.Enums.Movement
+import com.igniterobotics.scouting_2019.Enums.StartingPosition
 import com.igniterobotics.scouting_2019.Models.AutonResult
 import com.igniterobotics.scouting_2019.Models.MatchResult
+import com.igniterobotics.scouting_2019.Models.SummaryResult
 
 import kotlinx.android.synthetic.main.activity_post_match_scoring.*
+import kotlin.math.absoluteValue
 
 class PostMatchScoring : AppCompatActivity() {
 
@@ -47,18 +51,19 @@ class PostMatchScoring : AppCompatActivity() {
             val item = mapOf(
                 "match" to _matchResult.matchNumber,
                 "team" to _matchResult.teamNumber,
-                "data" to _matchResult
+                "data" to Klaxon().toJsonString(_matchResult)
             )
 
-
-            db.collection("matches")
-                .add(item)
+            db.collection("matches").document("Q${_matchResult.matchNumber}-${_matchResult.teamNumber}")
+                .set(item)
                 .addOnSuccessListener { doc ->
-                    Log.d("TAG","Add success: ${doc.id}")
+                    Log.d("TAG","Add success:")
                 }
                 .addOnFailureListener { e ->
                     Log.w("Add fail", e)
                 }
+
+
 
             val intent = Intent(this, MatchSelection::class.java)
             intent.putExtra("NextMatch", _matchResult.matchNumber +1)
@@ -68,6 +73,26 @@ class PostMatchScoring : AppCompatActivity() {
 
         setTitle("Team " + _matchResult.teamNumber.toString() + " - Post Match Scoring")
     }
+
+
+
+    /*private fun UpdateSummary(summaryResult: SummaryResult) {
+
+        val item = mapOf(
+            "team" to summaryResult.teamNumber,
+            "data" to Klaxon().toJsonString(summaryResult)
+        )
+        val db = FirebaseFirestore.getInstance()
+        db.collection("matches").document("")
+           // .whereEqualTo("team", summaryResult.teamNumber)
+            .delete
+            .addOnSuccessListener { }
+            .addOnFailureListener { exception ->
+                Log.w("TAG", "Error getting documents: ", exception)
+            }
+    }
+
+     */
 
     fun populatePostMatchResults(){
         var attemptedId = findViewById<RadioGroup>(R.id.HabAttemped).checkedRadioButtonId

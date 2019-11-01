@@ -16,7 +16,9 @@ import com.igniterobotics.scouting_2019.Enums.StartingPosition
 import com.igniterobotics.scouting_2019.Models.*
 import kotlinx.android.synthetic.main.activity_match_selection.*
 import java.lang.Exception
-import java.net.URL
+import com.beust.klaxon.Klaxon
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.math.absoluteValue
 
 
 class MatchSelection : AppCompatActivity() {
@@ -62,12 +64,10 @@ class MatchSelection : AppCompatActivity() {
 
          */
 
-
         setContentView(R.layout.activity_match_selection)
         setTitle("GRITS 2019 Scouting - "  + VERSION_NAME)
 
-
-
+       var matchPreviewButton = findViewById<Button>(R.id.matchPreviewSelectionButton)
 
 
         var matches = mutableListOf<String>()
@@ -82,7 +82,10 @@ class MatchSelection : AppCompatActivity() {
 
 
 
-
+        matchPreviewButton.setOnClickListener() {
+            val intent = Intent(this, MatchPreviewSelection::class.java)
+            startActivity(intent)
+        }
         startPreMatch.setOnClickListener() {
             UpdateTeamInfo()
             if (_matchResult.teamNumber == 0)

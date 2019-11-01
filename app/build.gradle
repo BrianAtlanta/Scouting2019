@@ -14,7 +14,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0 Alpha"
+        versionName "V1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -43,6 +43,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'com.android.support:multidex:1.0.3'
     implementation "io.karn:khttp-android:0.1.2"
+    implementation 'com.beust:klaxon:5.0.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

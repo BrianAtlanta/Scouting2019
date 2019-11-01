@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Scouting-2019</string>
+    <string name="app_name">GRITS</string>
     <string name="title_activity_auton_scoring">AutonScoring</string>
     <string name="title_activity_post_match_scoring">Post Match Scoring</string>
 </resources>
