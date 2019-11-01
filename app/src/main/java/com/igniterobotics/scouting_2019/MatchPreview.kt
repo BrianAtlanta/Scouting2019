@@ -80,6 +80,9 @@ class MatchPreview : AppCompatActivity() {
     private fun populateRobot1(summaryResult: SummaryResult){
 
         findViewById<TextView>(R.id.red1Label).text = if (summaryResult.teamNumber != 0) summaryResult.teamNumber.toString() else "----"
+
+        findViewById<TextView>(R.id.r1Matches).text = if (summaryResult.matchesCompleted > 0) summaryResult.matchesCompleted.toString() else "0"
+
         findViewById<TextView>(R.id.r1AvgCycles).text = if (summaryResult.avgCycles > 0) summaryResult.avgCycles.toString() else "0"
         findViewById<TextView>(R.id.r1MaxCycles).text = summaryResult.maxCycles.toString()
         findViewById<TextView>(R.id.r1MinCycles).text = if (summaryResult.minCycles < 99) summaryResult.minCycles.toString() else "0"
@@ -109,6 +112,7 @@ class MatchPreview : AppCompatActivity() {
     private fun populateRobot2(summaryResult: SummaryResult){
 
         findViewById<TextView>(R.id.red2Label).text = if (summaryResult.teamNumber != 0) summaryResult.teamNumber.toString() else "----"
+        findViewById<TextView>(R.id.r2Matches).text = if (summaryResult.matchesCompleted > 0) summaryResult.matchesCompleted.toString() else "0"
         findViewById<TextView>(R.id.r2AvgCycles).text = if (summaryResult.avgCycles > 0) summaryResult.avgCycles.toString() else "0"
         findViewById<TextView>(R.id.r2MaxCycles).text = summaryResult.maxCycles.toString()
         findViewById<TextView>(R.id.r2MinCycles).text = if (summaryResult.minCycles < 99) summaryResult.minCycles.toString() else "0"
@@ -135,6 +139,7 @@ class MatchPreview : AppCompatActivity() {
     private fun populateRobot3(summaryResult: SummaryResult){
 
         findViewById<TextView>(R.id.red3Label).text = if (summaryResult.teamNumber != 0) summaryResult.teamNumber.toString() else "----"
+        findViewById<TextView>(R.id.r3Matches).text = if (summaryResult.matchesCompleted > 0) summaryResult.matchesCompleted.toString() else "0"
         findViewById<TextView>(R.id.r3AvgCycles).text = if (summaryResult.avgCycles > 0) summaryResult.avgCycles.toString() else "0"
         findViewById<TextView>(R.id.r3MaxCycles).text = summaryResult.maxCycles.toString()
         findViewById<TextView>(R.id.r3MinCycles).text = if (summaryResult.minCycles < 99) summaryResult.minCycles.toString() else "0"
@@ -196,7 +201,8 @@ class MatchPreview : AppCompatActivity() {
                     var pastMatch = Klaxon().parse<MatchResult>(matchResultJson.toString())
                     var mCargo = pastMatch?.autonResult?.cargoCount!! + pastMatch.telopResult.cargoCount!!
                     var mHatch = pastMatch?.autonResult?.hatchCount!! + pastMatch.telopResult.hatchCount!!
-
+                    Log.w("TAG", "AutonCargo ${pastMatch?.autonResult?.cargoCount!!}  TeleopCargo ${pastMatch.telopResult.cargoCount!!}  mCargo ${mCargo}")
+                    Log.w("TAG", "AutonHatch ${pastMatch?.autonResult?.hatchCount!!}  TeleopHatch ${pastMatch.telopResult.hatchCount!!}  mHatch ${mHatch}")
                     matchCnt++
                     if (minCycles > mCargo + mHatch)
                         minCycles = mCargo + mHatch
@@ -271,10 +277,11 @@ class MatchPreview : AppCompatActivity() {
                     }
 
                 }
-                var avgCargo = totalCargo / (cargoMatchCnt * 1.0)
-                var avgHatch = totalHatches / (hatchMatchCnt * 1.0)
-                var avgCycles = totalCycles / (matchCnt * 1.0)
-                var avgScore = totalScore / (matchCnt * 1.0)
+                //%.1f".format( totalCargo / (matchCount * 1.0)).toDouble
+                var avgCargo = "%.1f".format(totalCargo / (cargoMatchCnt * 1.0)).toDouble()
+                var avgHatch = "%.1f".format(totalHatches / (hatchMatchCnt * 1.0)).toDouble()
+                var avgCycles = "%.1f".format(totalCycles / (matchCnt * 1.0)).toDouble()
+                var avgScore = "%.1f".format(totalScore / (matchCnt * 1.0)).toDouble()
                 var avgClimbTime = 0.0
                 if (climbTimeCount > 0)
                     avgClimbTime = totalClimbTime / (climbTimeCount * 1.0)
@@ -309,8 +316,8 @@ class MatchPreview : AppCompatActivity() {
                     }
                 }
 
-                findViewById<TextView>(R.id.blueAvgScore).text = blueScore.toString()
-                findViewById<TextView>(R.id.redAvgScore).text = redScore.toString()
+                findViewById<TextView>(R.id.blueAvgScore).text = "%.1f".format(blueScore).toDouble().toString()
+                findViewById<TextView>(R.id.redAvgScore).text = "%.1f".format(redScore).toDouble().toString()
             }
             .addOnFailureListener { exception ->
                 Log.w("TAG", "ERR ERR ERR ERR ERR --------  Error getting documents: ", exception)

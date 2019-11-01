@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.igniterobotics.scouting_2019.BuildConfig.VERSION_NAME
@@ -35,6 +36,63 @@ class MatchSelection : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+        var teamList = ArrayList<Int>()
+
+        teamList.add(832)
+        teamList.add(1002)
+        teamList.add(1102)
+        teamList.add(1261)
+        teamList.add(1311)
+        teamList.add(1414)
+        teamList.add(1683)
+        teamList.add(1746)
+        teamList.add(2974)
+        teamList.add(3344)
+        teamList.add(3635)
+        teamList.add(4026)
+        teamList.add(4112)
+        teamList.add(4188)
+        teamList.add(4468)
+        teamList.add(4509)
+        teamList.add(4516)
+        teamList.add(4910)
+        teamList.add(4941)
+        teamList.add(5132)
+        teamList.add(5293)
+        teamList.add(5332)
+        teamList.add(5632)
+        teamList.add(5900)
+        teamList.add(6341)
+        teamList.add(6829)
+        teamList.add(6905)
+        teamList.add(6910)
+        teamList.add(6925)
+        teamList.add(7427)
+        teamList.add(7451)
+        teamList.add(7538)
+
+         
+
+    /*    val db = FirebaseFirestore.getInstance()
+
+        val item = mapOf(
+            "teams" to teamList
+        )
+
+        db.collection("teams").document("TeamList")
+            .get()
+            .addOnSuccessListener { doc ->
+                teamList = Klaxon().parse<ArrayList<Int>>(doc.data?.getValue("teams"))
+                Log.d("TAG","Add success:")
+            }
+            .addOnFailureListener { e ->
+                Log.w("Add fail", e)
+            }
+            */
+
+
 
         /*
         _autonResults.add(AutonResult(4,2,2,0,Movement.Crossed))
@@ -88,8 +146,19 @@ class MatchSelection : AppCompatActivity() {
         }
         startPreMatch.setOnClickListener() {
             UpdateTeamInfo()
-            if (_matchResult.teamNumber == 0)
+            if (_matchResult.teamNumber == 0) {
+                var errorMsg = findViewById<TextView>(R.id.errorMsg)
+                errorMsg.text = "No Team Number"
+                errorMsg.visibility = View.VISIBLE
                 return@setOnClickListener
+            }
+
+            if (!teamList.contains(_matchResult.teamNumber)) {
+                var errorMsg = findViewById<TextView>(R.id.errorMsg)
+                errorMsg.text = "Invalid Team Number"
+                errorMsg.visibility = View.VISIBLE
+                return@setOnClickListener
+            }
 
             val intent = Intent(this, PreMatch::class.java)
             intent.putExtra("MatchResult", _matchResult)
@@ -98,6 +167,8 @@ class MatchSelection : AppCompatActivity() {
 
 
     }
+
+
     override fun onBackPressed() {
         true
 
